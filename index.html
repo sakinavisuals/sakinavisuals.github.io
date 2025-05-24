@@ -5,241 +5,243 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulir Pricelist Sakina Visuals</title>
     <style>
-      /* --- Global Variables --- */
-      :root {
-        --form-font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-        --page-outer-bg: #61081E;         
-        --page-main-bg: #500619;      
-        --header-text-color: #ffffff;
-        --form-primary-color: #1a73e8; 
-        --form-text-color: #333333;
-        --form-label-color: #555555;
-        --form-input-border-color: #cccccc;
-        --form-input-focus-border-color: var(--form-primary-color);
-        --form-background-color: #ffffff; 
-        --form-button-background-color: #61081e; 
-        --form-button-hover-background-color: #2d030e; 
-        --form-border-radius: 8px; 
-        --form-padding: 2rem; 
-        --form-input-padding: 0.75rem 1rem; 
-        --footer-text-color: #f0f0f0;
-        --footer-icon-color: #ffffff;
-      }
+        /* --- Global Variables --- */
+        :root {
+            --form-font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            --page-outer-bg: #61081E;        
+            --page-main-bg: #500619;      
+            --header-text-color: #ffffff;
+            --form-primary-color: #1a73e8; 
+            --form-text-color: #333333;
+            --form-label-color: #555555;
+            --form-input-border-color: #cccccc;
+            --form-input-focus-border-color: var(--form-primary-color);
+            --form-background-color: #ffffff; 
+            --form-button-background-color: #61081e; 
+            --form-button-hover-background-color: #2d030e; 
+            --form-border-radius: 8px; 
+            --form-padding: 2rem; 
+            --form-input-padding: 0.75rem 1rem; 
+            --footer-text-color: #f0f0f0;
+            --footer-icon-color: #ffffff;
+            --header-logo-height: 40px; /* Tinggi untuk logo di header */
+        }
 
-      /* --- Basic Reset & Full Page Setup --- */
-      html {
-        height: 100%;
-        box-sizing: border-box;
-        background-color: var(--page-outer-bg); 
-      }
-      *, *:before, *:after {
-        box-sizing: inherit;
-      }
-      body {
-        min-height: 100vh; 
-        margin: 0;
-        padding: 0;
-        display: flex; 
-        flex-direction: column; 
-        background-color: var(--page-outer-bg); 
-        font-family: var(--form-font-family); 
-      }
+        /* --- Basic Reset & Full Page Setup --- */
+        html {
+            height: 100%;
+            box-sizing: border-box;
+            background-color: var(--page-outer-bg); 
+        }
+        *, *:before, *:after {
+            box-sizing: inherit;
+        }
+        body {
+            min-height: 100vh; 
+            margin: 0;
+            padding: 0;
+            display: flex; 
+            flex-direction: column; 
+            background-color: var(--page-outer-bg); 
+            font-family: var(--form-font-family); 
+        }
 
-      /* --- Header Styling --- */
-      .page-header {
-        background-color: var(--page-main-bg); 
-        color: var(--header-text-color);
-        padding: 1rem 2rem; 
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
+        /* --- Header Styling --- */
+        .page-header {
+            background-color: var(--page-main-bg); 
+            color: var(--header-text-color);
+            padding: 1rem 2rem; 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            position: sticky;
+            top: 0;
+            left: 0; 
+            z-index: 1010; /* Pastikan di atas elemen lain */
+        }
+        .header-logo a {
+            display: inline-block; /* Agar bisa diberi dimensi jika perlu */
+            text-decoration: none;
+        }
+        .header-logo img { /* Styling untuk gambar logo */
+            height: var(--header-logo-height);
+            width: auto; /* Lebar menyesuaikan agar proporsional */
+            display: block; /* Hilangkan space bawah jika ada */
+        }
         
-        /* REVISI: Membuat Header Sticky */
-        position: sticky;
-        top: 0;
-        left: 0; 
-        z-index: 1010; /* Pastikan di atas elemen lain */
-        /* box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Optional: shadow saat sticky */
-      }
-      .header-logo a {
-        font-size: 1.5rem;
-        font-weight: bold;
-        color: var(--header-text-color);
-        text-decoration: none;
-      }
-      
-      .nav-toggle {
-        display: none; 
-        background: none;
-        border: none;
-        cursor: pointer;
-        padding: 10px;
-        z-index: 1002; /* Di atas .mobile-nav-menu jika .mobile-nav-menu z-indexnya 1000 */
-      }
-      .hamburger-icon {
-        display: block;
-        width: 24px;
-        height: 3px; 
-        background-color: var(--header-text-color);
-        position: relative;
-        transition: background-color 0s 0.3s; 
-      }
-      .hamburger-icon::before,
-      .hamburger-icon::after {
-        content: '';
-        display: block;
-        width: 100%;
-        height: 3px; 
-        background-color: var(--header-text-color);
-        position: absolute;
-        left: 0;
-        transition: transform 0.3s ease-in-out, top 0.3s ease-in-out 0.3s; 
-      }
-      .hamburger-icon::before { top: -8px; }
-      .hamburger-icon::after { top: 8px; }
+        .nav-toggle {
+            display: none; 
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1002;
+        }
+        .hamburger-icon {
+            display: block;
+            width: 24px;
+            height: 3px; 
+            background-color: var(--header-text-color);
+            position: relative;
+            transition: background-color 0s 0.3s; 
+        }
+        .hamburger-icon::before,
+        .hamburger-icon::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 3px; 
+            background-color: var(--header-text-color);
+            position: absolute;
+            left: 0;
+            transition: transform 0.3s ease-in-out, top 0.3s ease-in-out 0.3s; 
+        }
+        .hamburger-icon::before { top: -8px; }
+        .hamburger-icon::after { top: 8px; }
 
-      .page-header.nav-active .hamburger-icon { background-color: transparent; }
-      .page-header.nav-active .hamburger-icon::before { top: 0; transform: rotate(45deg); transition-delay: 0s, 0.3s; }
-      .page-header.nav-active .hamburger-icon::after { top: 0; transform: rotate(-45deg); transition-delay: 0s, 0.3s; }
+        .page-header.nav-active .hamburger-icon { background-color: transparent; }
+        .page-header.nav-active .hamburger-icon::before { top: 0; transform: rotate(45deg); transition-delay: 0s, 0.3s; }
+        .page-header.nav-active .hamburger-icon::after { top: 0; transform: rotate(-45deg); transition-delay: 0s, 0.3s; }
 
-      .header-nav ul { 
-        list-style: none; margin: 0; padding: 0; display: flex; 
-      }
-      .header-nav li { margin-left: 1.5rem; }
-      .header-nav a { color: var(--header-text-color); text-decoration: none; font-size: 1rem; font-weight: 500; transition: opacity 0.2s ease; }
-      .header-nav a:hover { opacity: 0.8; }
+        .header-nav ul { 
+            list-style: none; margin: 0; padding: 0; display: flex; 
+        }
+        .header-nav li { margin-left: 1.5rem; }
+        .header-nav a { color: var(--header-text-color); text-decoration: none; font-size: 1rem; font-weight: 500; transition: opacity 0.2s ease; }
+        .header-nav a:hover { opacity: 0.8; }
 
-      .mobile-nav-menu {
-        list-style: none; margin: 0; padding: 1rem 0; display: none; 
-        flex-direction: column; align-items: center; width: 100%;
-        position: absolute; top: 100%; left: 0; /* Posisi relatif terhadap .page-header */
-        background-color: var(--page-main-bg); 
-        box-shadow: 0 3px 5px rgba(0,0,0,0.2); 
-        z-index: 1000; /* Di bawah nav-toggle tapi di dalam stacking context header */
-      }
-      .page-header.nav-active .mobile-nav-menu { display: flex; }
-      .mobile-nav-menu li { margin: 0.5rem 0; width: 100%; text-align: center; }
-      .mobile-nav-menu a { color: var(--header-text-color); text-decoration: none; font-size: 1rem; font-weight: 500; padding: 0.75rem 1rem; display: block; width: 100%; }
-      .mobile-nav-menu a:hover { background-color: rgba(255,255,255,0.1); }
+        .mobile-nav-menu {
+            list-style: none; margin: 0; padding: 1rem 0; display: none; 
+            flex-direction: column; align-items: center; width: 100%;
+            position: absolute; top: 100%; left: 0;
+            background-color: var(--page-main-bg); 
+            box-shadow: 0 3px 5px rgba(0,0,0,0.2); 
+            z-index: 1000;
+        }
+        .page-header.nav-active .mobile-nav-menu { display: flex; }
+        .mobile-nav-menu li { margin: 0.5rem 0; width: 100%; text-align: center; }
+        .mobile-nav-menu a { color: var(--header-text-color); text-decoration: none; font-size: 1rem; font-weight: 500; padding: 0.75rem 1rem; display: block; width: 100%; }
+        .mobile-nav-menu a:hover { background-color: rgba(255,255,255,0.1); }
 
-      /* --- Wrapper untuk Konten Form (Centering & Padding) --- */
-      .form-page-wrapper {
-        width: 100%; 
-        flex-grow: 1; 
-        padding: 1rem; 
-        display: flex;
-        flex-direction: column; 
-        align-items: center;
-        /* Jika header fixed, mungkin perlu padding-top di sini */
-        /* Jika header sticky, biasanya tidak perlu */
-      }
+        /* --- Wrapper untuk Konten Form (Centering & Padding) --- */
+        .form-page-wrapper {
+            width: 100%; 
+            flex-grow: 1; 
+            padding: 1rem; 
+            display: flex;
+            flex-direction: column; 
+            align-items: center;
+        }
 
-      /* --- Form Container Styling --- */
-      .whatsapp-form-container {
-        max-width: 950px; 
-        width: 100%; 
-        padding: var(--form-padding);
-        background-color: var(--form-background-color); 
-        border-radius: var(--form-border-radius);
-        box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15); 
-        color: var(--form-text-color);
-        margin-top: 2rem; 
-        margin-bottom: 2rem; 
-      }
+        /* --- Form Container Styling --- */
+        .whatsapp-form-container {
+            max-width: 950px; 
+            width: 100%; 
+            padding: var(--form-padding);
+            background-color: var(--form-background-color); 
+            border-radius: var(--form-border-radius);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15); 
+            color: var(--form-text-color);
+            margin-top: 2rem; 
+            margin-bottom: 2rem; 
+        }
 
-      /* ... (CSS Typography, Form Group, Input Fields, Radio, Form Row, Helper Text, Submit Button TETAP SAMA) ... */
-      .whatsapp-form-container h3 { text-align: center; color: var(--form-text-color); font-size: 2rem; margin-bottom: 0.75rem; font-weight: 600; }
-      .whatsapp-form-container p.form-description { text-align: center; font-size: 1rem; color: var(--form-label-color); margin-bottom: 2.5rem; line-height: 1.7; max-width: 700px; margin-left: auto; margin-right: auto; }
-      .form-group { margin-bottom: 1.5rem; }
-      .form-group label { display: block; margin-bottom: 0.6rem; font-weight: 500; font-size: 0.9rem; color: var(--form-label-color); }
-      .form-group input[type="text"], .form-group input[type="tel"], .form-group input[type="number"], .form-group input[type="date"], .form-group textarea { width: 100%; padding: var(--form-input-padding); border: 1px solid var(--form-input-border-color); border-radius: var(--form-border-radius); font-size: 1rem; color: var(--form-text-color); background-color: #fdfdfd; transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out; }
-      .form-group input[type="text"]::placeholder, .form-group input[type="tel"]::placeholder, .form-group input[type="number"]::placeholder, .form-group textarea::placeholder { color: #aaaaaa; font-size: 0.95rem; }
-      .form-group input[type="text"]:focus, .form-group input[type="tel"]:focus, .form-group input[type="number"]:focus, .form-group input[type="date"]:focus, .form-group textarea:focus { outline: none; border-color: var(--form-input-focus-border-color); box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.15); }
-      .form-group textarea { min-height: 100px; resize: vertical; }
-      .form-group input[type="date"] { -webkit-appearance: none; appearance: none; position: relative; background-image: url('data:image/svg+xml;utf8,<svg fill="%23555555" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/><path d="M0 0h24v24H0z" fill="none"/></svg>'); background-repeat: no-repeat; background-position: right 10px center; background-size: 20px; }
-      .form-group input[type="date"]::-webkit-calendar-picker-indicator { opacity: 0; cursor: pointer; }
-      .phone-input-group { display: flex; align-items: center; }
-      .phone-input-group .country-code { padding: var(--form-input-padding); border: 1px solid var(--form-input-border-color); border-right: none; border-radius: var(--form-border-radius) 0 0 var(--form-border-radius); background-color: #e9ecef; font-size: 1rem; color: var(--form-label-color); white-space: nowrap; flex-shrink: 0; }
-      .phone-input-group input[type="tel"] { border-radius: 0 var(--form-border-radius) var(--form-border-radius) 0; border-left: none; flex-grow: 1; }
-      .phone-input-group input[type="tel"]:focus { border-left: none; }
-      .form-group .radio-group .radio-item { display: flex; align-items: center; margin-bottom: 0.75rem; cursor: pointer; }
-      .form-group .radio-group .radio-item:last-child { margin-bottom: 0; }
-      .form-group .radio-group .radio-item input[type="radio"] { margin-right: 0.75rem; appearance: none; -webkit-appearance: none; -moz-appearance: none; width: 18px; height: 18px; border: 2px solid var(--form-input-border-color); border-radius: 50%; outline: none; cursor: pointer; position: relative; top: -1px; transition: border-color 0.2s ease, background-color 0.2s ease; flex-shrink: 0; }
-      .form-group .radio-group .radio-item input[type="radio"]:checked { border-color: var(--form-button-background-color); }
-      .form-group .radio-group .radio-item input[type="radio"]:checked::before { background-color: var(--form-button-background-color); content: ''; display: block; width: 10px; height: 10px; border-radius: 50%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
-      .form-group .radio-group .radio-item input[type="radio"]:focus { box-shadow: 0 0 0 3px rgba(97, 8, 30, 0.25); }
-      .form-group .radio-group .radio-item label { font-weight: normal; margin-bottom: 0; font-size: 0.95rem; color: var(--form-text-color); line-height: 1.5; }
-      .form-row { display: flex; flex-wrap: wrap; margin-left: -12px; margin-right: -12px; margin-bottom: 1.5rem; }
-      .form-row:last-of-type { margin-bottom: 2.5rem; }
-      .form-group.column { padding-left: 12px; padding-right: 12px; flex-grow: 1; flex-basis: 0; margin-bottom: 0; }
-      .form-group.column.size-1of2 { min-width: calc(50% - 24px); }
-      .form-group.column.size-1of3 { min-width: calc(33.333% - 24px); }
-      .form-group.column.size-full { min-width: calc(100% - 24px); }
-      .whatsapp-form-container small { display: block; margin-top: 0.5rem; font-size: 0.85rem; color: #777777; line-height: 1.4; }
-      .submit-button { background-color: var(--form-button-background-color); color: white; padding: 0.9rem 1.5rem; border: none; border-radius: var(--form-border-radius); cursor: pointer; font-size: 1.1rem; font-weight: 600; width: 100%; text-align: center; transition: background-color 0.2s ease-in-out, transform 0.1s ease, box-shadow 0.2s ease; letter-spacing: 0.5px; margin-top: 1rem; }
-      .submit-button:hover { background-color: var(--form-button-hover-background-color); transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-      .submit-button:active { transform: translateY(0px); box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-      
-      /* --- Footer Styling --- */
-      .footer-container {
-        width: 100%; 
-        background-color: var(--page-main-bg); 
-        color: var(--footer-text-color);
-        padding: 2rem 1rem;
-        text-align: center;
-        box-sizing: border-box;
-      }
-      .social-icons { margin-bottom: 1rem; }
-      .social-icons a { color: var(--footer-icon-color); text-decoration: none; margin: 0 10px; display: inline-block; transition: transform 0.2s ease, opacity 0.2s ease; }
-      .social-icons a svg { width: 28px; height: 28px; fill: currentColor; }
-      .social-icons a:hover { transform: translateY(-2px); opacity: 0.8; }
-      .copyright { font-size: 0.85rem; line-height: 1.5; margin: 0; }
+        /* ... (CSS Typography, Form Group, Input Fields, Radio, Form Row, Helper Text, Submit Button TETAP SAMA) ... */
+        .whatsapp-form-container h3 { text-align: center; color: var(--form-text-color); font-size: 2rem; margin-bottom: 0.75rem; font-weight: 600; }
+        .whatsapp-form-container p.form-description { text-align: center; font-size: 1rem; color: var(--form-label-color); margin-bottom: 2.5rem; line-height: 1.7; max-width: 700px; margin-left: auto; margin-right: auto; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.6rem; font-weight: 500; font-size: 0.9rem; color: var(--form-label-color); }
+        .form-group input[type="text"], .form-group input[type="tel"], .form-group input[type="number"], .form-group input[type="date"], .form-group textarea { width: 100%; padding: var(--form-input-padding); border: 1px solid var(--form-input-border-color); border-radius: var(--form-border-radius); font-size: 1rem; color: var(--form-text-color); background-color: #fdfdfd; transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out; }
+        .form-group input[type="text"]::placeholder, .form-group input[type="tel"]::placeholder, .form-group input[type="number"]::placeholder, .form-group textarea::placeholder { color: #aaaaaa; font-size: 0.95rem; }
+        .form-group input[type="text"]:focus, .form-group input[type="tel"]:focus, .form-group input[type="number"]:focus, .form-group input[type="date"]:focus, .form-group textarea:focus { outline: none; border-color: var(--form-input-focus-border-color); box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.15); }
+        .form-group textarea { min-height: 100px; resize: vertical; }
+        .form-group input[type="date"] { -webkit-appearance: none; appearance: none; position: relative; background-image: url('data:image/svg+xml;utf8,<svg fill="%23555555" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/><path d="M0 0h24v24H0z" fill="none"/></svg>'); background-repeat: no-repeat; background-position: right 10px center; background-size: 20px; }
+        .form-group input[type="date"]::-webkit-calendar-picker-indicator { opacity: 0; cursor: pointer; }
+        .phone-input-group { display: flex; align-items: center; }
+        .phone-input-group .country-code { padding: var(--form-input-padding); border: 1px solid var(--form-input-border-color); border-right: none; border-radius: var(--form-border-radius) 0 0 var(--form-border-radius); background-color: #e9ecef; font-size: 1rem; color: var(--form-label-color); white-space: nowrap; flex-shrink: 0; }
+        .phone-input-group input[type="tel"] { border-radius: 0 var(--form-border-radius) var(--form-border-radius) 0; border-left: none; flex-grow: 1; }
+        .phone-input-group input[type="tel"]:focus { border-left: none; }
+        .form-group .radio-group .radio-item { display: flex; align-items: center; margin-bottom: 0.75rem; cursor: pointer; }
+        .form-group .radio-group .radio-item:last-child { margin-bottom: 0; }
+        .form-group .radio-group .radio-item input[type="radio"] { margin-right: 0.75rem; appearance: none; -webkit-appearance: none; -moz-appearance: none; width: 18px; height: 18px; border: 2px solid var(--form-input-border-color); border-radius: 50%; outline: none; cursor: pointer; position: relative; top: -1px; transition: border-color 0.2s ease, background-color 0.2s ease; flex-shrink: 0; }
+        .form-group .radio-group .radio-item input[type="radio"]:checked { border-color: var(--form-button-background-color); }
+        .form-group .radio-group .radio-item input[type="radio"]:checked::before { background-color: var(--form-button-background-color); content: ''; display: block; width: 10px; height: 10px; border-radius: 50%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+        .form-group .radio-group .radio-item input[type="radio"]:focus { box-shadow: 0 0 0 3px rgba(97, 8, 30, 0.25); }
+        .form-group .radio-group .radio-item label { font-weight: normal; margin-bottom: 0; font-size: 0.95rem; color: var(--form-text-color); line-height: 1.5; }
+        .form-row { display: flex; flex-wrap: wrap; margin-left: -12px; margin-right: -12px; margin-bottom: 1.5rem; }
+        .form-row:last-of-type { margin-bottom: 2.5rem; }
+        .form-group.column { padding-left: 12px; padding-right: 12px; flex-grow: 1; flex-basis: 0; margin-bottom: 0; }
+        .form-group.column.size-1of2 { min-width: calc(50% - 24px); }
+        .form-group.column.size-1of3 { min-width: calc(33.333% - 24px); }
+        .form-group.column.size-full { min-width: calc(100% - 24px); }
+        .whatsapp-form-container small { display: block; margin-top: 0.5rem; font-size: 0.85rem; color: #777777; line-height: 1.4; }
+        .submit-button { background-color: var(--form-button-background-color); color: white; padding: 0.9rem 1.5rem; border: none; border-radius: var(--form-border-radius); cursor: pointer; font-size: 1.1rem; font-weight: 600; width: 100%; text-align: center; transition: background-color 0.2s ease-in-out, transform 0.1s ease, box-shadow 0.2s ease; letter-spacing: 0.5px; margin-top: 1rem; }
+        .submit-button:hover { background-color: var(--form-button-hover-background-color); transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .submit-button:active { transform: translateY(0px); box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        
+        /* --- Footer Styling --- */
+        .footer-container {
+            width: 100%; 
+            background-color: var(--page-main-bg); 
+            color: var(--footer-text-color);
+            padding: 2rem 1rem;
+            text-align: center;
+            box-sizing: border-box;
+        }
+        .social-icons { margin-bottom: 1rem; }
+        .social-icons a { color: var(--footer-icon-color); text-decoration: none; margin: 0 10px; display: inline-block; transition: transform 0.2s ease, opacity 0.2s ease; }
+        .social-icons a svg { width: 28px; height: 28px; fill: currentColor; }
+        .social-icons a:hover { transform: translateY(-2px); opacity: 0.8; }
+        .copyright { font-size: 0.85rem; line-height: 1.5; margin: 0; }
 
-      /* --- Responsive Adjustments --- */
-      @media (max-width: 992px) { /* Tablet */
-        .form-group.column.size-1of3 { min-width: calc(50% - 24px); }
-      }
-      @media (max-width: 768px) { /* Mobile */
-        .page-header { padding: 1rem; }
-        .header-logo a { font-size: 1.25rem; }
-        .header-nav { display: none; } 
-        .nav-toggle { display: block; } 
-        .form-page-wrapper { padding: 1rem; } 
-        .whatsapp-form-container { padding: 1.5rem; margin-top: 1rem; margin-bottom: 1rem; max-width: none; }
-        .whatsapp-form-container h3 { font-size: 1.6rem; }
-        .whatsapp-form-container p.form-description { font-size: 0.9rem; margin-bottom: 1.5rem; }
-        .form-group input[type="text"], .form-group input[type="tel"], .form-group input[type="number"], .form-group input[type="date"], .form-group textarea, .phone-input-group .country-code { font-size: 0.95rem; }
-        .submit-button { padding: 0.8rem 1.25rem; font-size: 1rem; }
-        .form-group .radio-group .radio-item label { font-size: 0.9rem; }
-        .form-row { flex-direction: column; margin-left: 0; margin-right: 0; margin-bottom: 0; }
-        .form-group.column, .form-group.column.size-1of2, .form-group.column.size-1of3, .form-group.column.size-full { min-width: 100%; padding-left: 0; padding-right: 0; margin-bottom: 1.5rem; }
-        .form-group.column:last-child { margin-bottom: 0; }
-        .form-row > .form-group.column:last-child { margin-bottom: 0; }
-        .form-row:not(:last-of-type){ margin-bottom: 1.5rem; }
-        .footer-container { padding: 1.5rem 1rem; }
-        .social-icons a svg { width: 24px; height: 24px; }
-        .copyright { font-size: 0.8rem; }
-      }
+        /* --- Responsive Adjustments --- */
+        @media (max-width: 992px) { /* Tablet */
+            .form-group.column.size-1of3 { min-width: calc(50% - 24px); }
+        }
+        @media (max-width: 768px) { /* Mobile */
+            .page-header { padding: 1rem; }
+            /* .header-logo a { font-size: 1.25rem; } -> Dihapus karena sekarang pakai gambar */
+            .header-logo img { height: calc(var(--header-logo-height) - 5px); } /* Sedikit lebih kecil di mobile jika perlu */
+            .header-nav { display: none; } 
+            .nav-toggle { display: block; } 
+            .form-page-wrapper { padding: 1rem; } 
+            .whatsapp-form-container { padding: 1.5rem; margin-top: 1rem; margin-bottom: 1rem; max-width: none; }
+            .whatsapp-form-container h3 { font-size: 1.6rem; }
+            .whatsapp-form-container p.form-description { font-size: 0.9rem; margin-bottom: 1.5rem; }
+            .form-group input[type="text"], .form-group input[type="tel"], .form-group input[type="number"], .form-group input[type="date"], .form-group textarea, .phone-input-group .country-code { font-size: 0.95rem; }
+            .submit-button { padding: 0.8rem 1.25rem; font-size: 1rem; }
+            .form-group .radio-group .radio-item label { font-size: 0.9rem; }
+            .form-row { flex-direction: column; margin-left: 0; margin-right: 0; margin-bottom: 0; }
+            .form-group.column, .form-group.column.size-1of2, .form-group.column.size-1of3, .form-group.column.size-full { min-width: 100%; padding-left: 0; padding-right: 0; margin-bottom: 1.5rem; }
+            .form-group.column:last-child { margin-bottom: 0; }
+            .form-row > .form-group.column:last-child { margin-bottom: 0; }
+            .form-row:not(:last-of-type){ margin-bottom: 1.5rem; }
+            .footer-container { padding: 1.5rem 1rem; }
+            .social-icons a svg { width: 24px; height: 24px; }
+            .copyright { font-size: 0.8rem; }
+        }
     </style>
 </head>
 <body>
     <header class="page-header">
         <div class="header-logo">
-            <a href="#">SAKINA VISUALS</a>
+            <a href="https://linktr.ee/sakinavisuals">
+                <img src="images/sakina_main logo.png" alt="Sakina Visuals Logo">
+            </a>
         </div>
         <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
             <span class="hamburger-icon"></span>
         </button>
         <nav class="header-nav"> 
             <ul>
-                <li><a href="https://linktr.ee/sakinavisuals">Home</a></li>
+                <li><a href="https://linktr.ee/sakinavisuals" target="_blank">Home</a></li>
                 <li><a href="https://sakinavisuals.github.io/katalog.html">Katalog</a></li>
                 <li><a href="https://sakinavisuals.github.io/pricelist.html">Pricelist</a></li>
             </ul>
         </nav>
         <ul class="mobile-nav-menu"> 
-            <li><a href="https://linktr.ee/sakinavisuals">Home</a></li>
+            <li><a href="https://linktr.ee/sakinavisuals" target="_blank">Home</a></li>
             <li><a href="https://sakinavisuals.github.io/katalog.html">Katalog</a></li>
             <li><a href="https://sakinavisuals.github.io/pricelist.html">Pricelist</a></li>
         </ul>
@@ -260,46 +262,46 @@
               <small>Mohon isi dengan angka saja.</small>
             </div>
             <div class="form-row"> 
-                <div class="form-group column size-1of2"> 
-                  <label for="nomorWhatsapp">Kontak WhatsApp Aktif *</label>
-                  <div class="phone-input-group">
-                    <span class="country-code">+62</span>
-                    <input type="tel" id="nomorWhatsapp" name="nomorWhatsapp" placeholder="81234567890" required pattern="[0-9]{9,15}">
-                  </div>
-                  <small>Akan kami gunakan untuk mengirim pricelist & follow-up.</small>
+              <div class="form-group column size-1of2"> 
+                <label for="nomorWhatsapp">Kontak WhatsApp Aktif *</label>
+                <div class="phone-input-group">
+                  <span class="country-code">+62</span>
+                  <input type="tel" id="nomorWhatsapp" name="nomorWhatsapp" placeholder="81234567890" required pattern="[0-9]{9,15}">
                 </div>
-                <div class="form-group column size-1of2"> 
-                  <label for="tanggalPernikahan">Rencana Tanggal Pernikahan *</label>
-                  <input type="date" id="tanggalPernikahan" name="tanggalPernikahan" required>
-                  <small>Penting untuk pengecekan ketersediaan jadwal produksi kami.</small>
-                </div>
+                <small>Akan kami gunakan untuk mengirim pricelist & follow-up.</small>
+              </div>
+              <div class="form-group column size-1of2"> 
+                <label for="tanggalPernikahan">Rencana Tanggal Pernikahan *</label>
+                <input type="date" id="tanggalPernikahan" name="tanggalPernikahan" required>
+                <small>Penting untuk pengecekan ketersediaan jadwal produksi kami.</small>
+              </div>
             </div>
             <div class="form-row"> 
-                <div class="form-group column size-1of3">
-                    <label>Estimasi Anggaran Undangan (per pcs): *</label>
-                    <div class="radio-group">
-                        <span class="radio-item"><input type="radio" id="anggaranUnd1" name="anggaranUndangan" value="Dibawah Rp10.000" required> <label for="anggaranUnd1">Dibawah Rp10.000</label></span>
-                        <span class="radio-item"><input type="radio" id="anggaranUnd2" name="anggaranUndangan" value="Rp10.000 - Rp20.000"> <label for="anggaranUnd2">Rp10.000 - Rp20.000</label></span>
-                        <span class="radio-item"><input type="radio" id="anggaranUnd3" name="anggaranUndangan" value="Rp20.000 - Rp30.000"> <label for="anggaranUnd3">Rp20.000 - Rp30.000</label></span>
-                        <span class="radio-item"><input type="radio" id="anggaranUnd4" name="anggaranUndangan" value="Rp30.000 - Rp50.000"> <label for="anggaranUnd4">Rp30.000 - Rp50.000</label></span>
-                        <span class="radio-item"><input type="radio" id="anggaranUnd5" name="anggaranUndangan" value="Diatas Rp50.000"> <label for="anggaranUnd5">Diatas Rp50.000</label></span>
-                    </div>
+              <div class="form-group column size-1of3">
+                <label>Estimasi Anggaran Undangan (per pcs): *</label>
+                <div class="radio-group">
+                  <span class="radio-item"><input type="radio" id="anggaranUnd1" name="anggaranUndangan" value="Dibawah Rp10.000" required> <label for="anggaranUnd1">Dibawah Rp10.000</label></span>
+                  <span class="radio-item"><input type="radio" id="anggaranUnd2" name="anggaranUndangan" value="Rp10.000 - Rp20.000"> <label for="anggaranUnd2">Rp10.000 - Rp20.000</label></span>
+                  <span class="radio-item"><input type="radio" id="anggaranUnd3" name="anggaranUndangan" value="Rp20.000 - Rp30.000"> <label for="anggaranUnd3">Rp20.000 - Rp30.000</label></span>
+                  <span class="radio-item"><input type="radio" id="anggaranUnd4" name="anggaranUndangan" value="Rp30.000 - Rp50.000"> <label for="anggaranUnd4">Rp30.000 - Rp50.000</label></span>
+                  <span class="radio-item"><input type="radio" id="anggaranUnd5" name="anggaranUndangan" value="Diatas Rp50.000"> <label for="anggaranUnd5">Diatas Rp50.000</label></span>
                 </div>
-                <div class="form-group column size-1of3">
-                    <label>Gaya Undangan yang Anda Inginkan: *</label>
-                    <div class="radio-group">
-                        <span class="radio-item"><input type="radio" id="pref1" name="preferensiUndangan" value="Desain Elegan & Material Premium" required> <label for="pref1">Desain Elegan & Material Premium</label></span>
-                        <span class="radio-item"><input type="radio" id="pref2" name="preferensiUndangan" value="Konsep Unik & Kustomisasi Personal"> <label for="pref2">Konsep Unik & Kustomisasi Personal</label></span>
-                        <span class="radio-item"><input type="radio" id="pref3" name="preferensiUndangan" value="Fungsional, Menarik & Harga Bersahabat"> <label for="pref3">Fungsional, Menarik & Harga Bersahabat</label></span>
-                    </div>
+              </div>
+              <div class="form-group column size-1of3">
+                <label>Gaya Undangan yang Anda Inginkan: *</label>
+                <div class="radio-group">
+                  <span class="radio-item"><input type="radio" id="pref1" name="preferensiUndangan" value="Desain Elegan & Material Premium" required> <label for="pref1">Desain Elegan & Material Premium</label></span>
+                  <span class="radio-item"><input type="radio" id="pref2" name="preferensiUndangan" value="Konsep Unik & Kustomisasi Personal"> <label for="pref2">Konsep Unik & Kustomisasi Personal</label></span>
+                  <span class="radio-item"><input type="radio" id="pref3" name="preferensiUndangan" value="Fungsional, Menarik & Harga Bersahabat"> <label for="pref3">Fungsional, Menarik & Harga Bersahabat</label></span>
                 </div>
-                <div class="form-group column size-1of3">
-                    <label>Apakah Anda Sudah Memiliki Rencana Souvenir? *</label>
-                    <div class="radio-group">
-                        <span class="radio-item"><input type="radio" id="adaSouvenir" name="punyaSouvenir" value="Sudah Ada / Sedang Dipertimbangkan" required> <label for="adaSouvenir">Sudah Ada / Sedang Dipertimbangkan</label></span>
-                        <span class="radio-item"><input type="radio" id="belumSouvenir" name="punyaSouvenir" value="Belum Ada / Masih Mencari"> <label for="belumSouvenir">Belum Ada / Masih Mencari</label></span>
-                    </div>
+              </div>
+              <div class="form-group column size-1of3">
+                <label>Apakah Anda Sudah Memiliki Rencana Souvenir? *</label>
+                <div class="radio-group">
+                  <span class="radio-item"><input type="radio" id="adaSouvenir" name="punyaSouvenir" value="Sudah Ada / Sedang Dipertimbangkan" required> <label for="adaSouvenir">Sudah Ada / Sedang Dipertimbangkan</label></span>
+                  <span class="radio-item"><input type="radio" id="belumSouvenir" name="punyaSouvenir" value="Belum Ada / Masih Mencari"> <label for="belumSouvenir">Belum Ada / Masih Mencari</label></span>
                 </div>
+              </div>
             </div>
             <div class="form-group" id="detailSouvenirGroup" style="display:none;">
               <label for="detailSouvenir">Deskripsikan Souvenir Pilihan Anda (Jika Ada): *</label>
@@ -337,8 +339,6 @@
     </footer>
 
     <script>
-    // JavaScript (Navigasi Mobile, Fungsi Form) TETAP SAMA PERSIS SEPERTI SEBELUMNYA
-    // ... (Pastikan seluruh JavaScript dari jawaban sebelumnya ada di sini) ...
     document.addEventListener('DOMContentLoaded', function() {
         const navToggle = document.querySelector('.nav-toggle');
         const pageHeader = document.querySelector('.page-header');
@@ -349,76 +349,89 @@
                 navToggle.setAttribute('aria-expanded', isExpanded);
             });
         }
-        const form = document.getElementById('pricelistForm');
-        const punyaSouvenirRadios = document.querySelectorAll('input[name="punyaSouvenir"]');
-        const detailSouvenirGroup = document.getElementById('detailSouvenirGroup');
-        const detailSouvenirTextarea = document.getElementById('detailSouvenir');
-        const anggaranSouvenirGroup = document.getElementById('anggaranSouvenirGroup');
-        const anggaranSouvenirRadios = document.querySelectorAll('input[name="anggaranSouvenir"]'); 
-        function toggleSouvenirDetails() {
-            const selectedPunyaSouvenir = document.querySelector('input[name="punyaSouvenir"]:checked');
-            if (selectedPunyaSouvenir && selectedPunyaSouvenir.value === 'Sudah Ada / Sedang Dipertimbangkan') {
-                detailSouvenirGroup.style.display = 'block';
-                detailSouvenirTextarea.required = true;
-                anggaranSouvenirGroup.style.display = 'block';
-                if (anggaranSouvenirRadios.length > 0) { anggaranSouvenirRadios[0].required = true; }
-            } else {
-                detailSouvenirGroup.style.display = 'none';
-                detailSouvenirTextarea.required = false;
-                detailSouvenirTextarea.value = ''; 
-                anggaranSouvenirGroup.style.display = 'none';
-                anggaranSouvenirRadios.forEach(radio => { radio.checked = false; radio.required = false; });
-            }
-        }
-        punyaSouvenirRadios.forEach(radio => { radio.addEventListener('change', toggleSouvenirDetails); });
-        toggleSouvenirDetails(); 
-        form.addEventListener('submit', function(event) {
-            event.preventDefault(); 
-            if (anggaranSouvenirGroup.style.display === 'block') {
-                const selectedAnggaranSouvenir = document.querySelector('input[name="anggaranSouvenir"]:checked');
-                if (!selectedAnggaranSouvenir) {
-                    alert('Mohon pilih rentang anggaran souvenir.');
-                    const firstAnggaranSouvenirRadio = document.querySelector('input[name="anggaranSouvenir"]');
-                    if(firstAnggaranSouvenirRadio) firstAnggaranSouvenirRadio.focus();
-                    return; 
+        // Pastikan ID form adalah 'pricelistForm' di HTML Anda
+        const form = document.getElementById('pricelistForm'); 
+        if (form) { // Tambahkan pengecekan jika form ada
+            const punyaSouvenirRadios = document.querySelectorAll('input[name="punyaSouvenir"]');
+            const detailSouvenirGroup = document.getElementById('detailSouvenirGroup');
+            const detailSouvenirTextarea = document.getElementById('detailSouvenir');
+            const anggaranSouvenirGroup = document.getElementById('anggaranSouvenirGroup');
+            const anggaranSouvenirRadios = document.querySelectorAll('input[name="anggaranSouvenir"]'); 
+            
+            function toggleSouvenirDetails() {
+                const selectedPunyaSouvenir = document.querySelector('input[name="punyaSouvenir"]:checked');
+                if (detailSouvenirGroup && anggaranSouvenirGroup && detailSouvenirTextarea) { // Pastikan elemen ada
+                    if (selectedPunyaSouvenir && selectedPunyaSouvenir.value === 'Sudah Ada / Sedang Dipertimbangkan') {
+                        detailSouvenirGroup.style.display = 'block';
+                        detailSouvenirTextarea.required = true;
+                        anggaranSouvenirGroup.style.display = 'block';
+                        if (anggaranSouvenirRadios.length > 0) { 
+                            // Cek apakah ada yang sudah terpilih, jika tidak, buat required
+                            let isAnggaranSouvenirChecked = false;
+                            anggaranSouvenirRadios.forEach(radio => { if(radio.checked) isAnggaranSouvenirChecked = true; });
+                            if(!isAnggaranSouvenirChecked) anggaranSouvenirRadios[0].required = true; else anggaranSouvenirRadios.forEach(radio => radio.required = false);
+                        }
+                    } else {
+                        detailSouvenirGroup.style.display = 'none';
+                        detailSouvenirTextarea.required = false;
+                        detailSouvenirTextarea.value = ''; 
+                        anggaranSouvenirGroup.style.display = 'none';
+                        anggaranSouvenirRadios.forEach(radio => { radio.checked = false; radio.required = false; });
+                    }
                 }
             }
-            const nomorTujuanBisnis = '6281229236446'; 
-            const nama = document.getElementById('nama').value;
-            let nomorWhatsappUser = document.getElementById('nomorWhatsapp').value;
-            const estimasiUndangan = document.getElementById('estimasiUndangan').value;
-            const tanggalPernikahan = document.getElementById('tanggalPernikahan').value;
-            const preferensiUndanganElement = document.querySelector('input[name="preferensiUndangan"]:checked');
-            const preferensiUndangan = preferensiUndanganElement ? preferensiUndanganElement.value : "Belum dipilih";
-            const anggaranUndanganElement = document.querySelector('input[name="anggaranUndangan"]:checked');
-            const anggaranUndangan = anggaranUndanganElement ? anggaranUndanganElement.value : "Belum dipilih";
-            const punyaSouvenirElement = document.querySelector('input[name="punyaSouvenir"]:checked');
-            const punyaSouvenir = punyaSouvenirElement ? punyaSouvenirElement.value : "Belum dipilih";
-            let detailSouvenir = "";
-            let anggaranSouvenir = "";
-            if (punyaSouvenir === 'Sudah Ada / Sedang Dipertimbangkan') {
-                detailSouvenir = document.getElementById('detailSouvenir').value;
-                const anggaranSouvenirElement = document.querySelector('input[name="anggaranSouvenir"]:checked');
-                anggaranSouvenir = anggaranSouvenirElement ? anggaranSouvenirElement.value : "Belum dipilih";
-            }
-            let pesan = `🔔 Permintaan Pricelist Undangan Baru (Sakina Visuals) 🔔\n\n`;
-            pesan += `Berikut adalah detail dari calon klien:\n\n`;
-            pesan += `👤 Nama: ${nama}\n`;
-            pesan += `📱 WhatsApp Klien: +62${nomorWhatsappUser}\n`;
-            pesan += `🔢 Estimasi Undangan: ${estimasiUndangan} pcs\n`;
-            pesan += `🗓️ Rencana Tanggal Pernikahan: ${new Date(tanggalPernikahan).toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' })}\n\n`;
-            pesan += `✨ Preferensi Undangan:\n   • ${preferensiUndangan}\n\n`;
-            pesan += `💰 Estimasi Anggaran Undangan (per pcs):\n   • ${anggaranUndangan}\n\n`;
-            pesan += `🎁 Status Rencana Souvenir:\n   • ${punyaSouvenir}\n`;
-            if (punyaSouvenir === 'Sudah Ada / Sedang Dipertimbangkan') {
-                pesan += `   🏷️ Detail Souvenir: ${detailSouvenir || "Tidak diisi"}\n`;
-                pesan += `   💸 Anggaran Souvenir (per pcs): ${anggaranSouvenir || "Belum dipilih"}\n`;
-            }
-            pesan += `\nMohon untuk segera ditindaklanjuti. Terima kasih!`;
-            const encodedPesan = encodeURIComponent(pesan);
-            const whatsappURL = `https://wa.me/${nomorTujuanBisnis}?text=${encodedPesan}`;
-            window.open(whatsappURL, '_blank');
-        });
+
+            punyaSouvenirRadios.forEach(radio => { radio.addEventListener('change', toggleSouvenirDetails); });
+            toggleSouvenirDetails(); 
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); 
+                if (anggaranSouvenirGroup && anggaranSouvenirGroup.style.display === 'block') {
+                    const selectedAnggaranSouvenir = document.querySelector('input[name="anggaranSouvenir"]:checked');
+                    if (!selectedAnggaranSouvenir) {
+                        alert('Mohon pilih rentang anggaran souvenir.');
+                        const firstAnggaranSouvenirRadio = document.querySelector('input[name="anggaranSouvenir"]');
+                        if(firstAnggaranSouvenirRadio) firstAnggaranSouvenirRadio.focus();
+                        return; 
+                    }
+                }
+                const nomorTujuanBisnis = '6281229236446'; 
+                const nama = document.getElementById('nama').value;
+                let nomorWhatsappUser = document.getElementById('nomorWhatsapp').value;
+                const estimasiUndangan = document.getElementById('estimasiUndangan').value;
+                const tanggalPernikahan = document.getElementById('tanggalPernikahan').value;
+                const preferensiUndanganElement = document.querySelector('input[name="preferensiUndangan"]:checked');
+                const preferensiUndangan = preferensiUndanganElement ? preferensiUndanganElement.value : "Belum dipilih";
+                const anggaranUndanganElement = document.querySelector('input[name="anggaranUndangan"]:checked');
+                const anggaranUndangan = anggaranUndanganElement ? anggaranUndanganElement.value : "Belum dipilih";
+                const punyaSouvenirElement = document.querySelector('input[name="punyaSouvenir"]:checked');
+                const punyaSouvenir = punyaSouvenirElement ? punyaSouvenirElement.value : "Belum dipilih";
+                let detailSouvenir = "";
+                let anggaranSouvenir = "";
+                if (punyaSouvenir === 'Sudah Ada / Sedang Dipertimbangkan') {
+                    detailSouvenir = document.getElementById('detailSouvenir').value;
+                    const anggaranSouvenirElement = document.querySelector('input[name="anggaranSouvenir"]:checked');
+                    anggaranSouvenir = anggaranSouvenirElement ? anggaranSouvenirElement.value : "Belum dipilih";
+                }
+                let pesan = `🔔 Permintaan Pricelist Undangan Baru (Sakina Visuals) 🔔\n\n`;
+                pesan += `Berikut adalah detail dari calon klien:\n\n`;
+                pesan += `👤 Nama: ${nama}\n`;
+                pesan += `📱 WhatsApp Klien: +62${nomorWhatsappUser}\n`;
+                pesan += `🔢 Estimasi Undangan: ${estimasiUndangan} pcs\n`;
+                pesan += `🗓️ Rencana Tanggal Pernikahan: ${new Date(tanggalPernikahan).toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' })}\n\n`;
+                pesan += `✨ Preferensi Undangan:\n • ${preferensiUndangan}\n\n`;
+                pesan += `💰 Estimasi Anggaran Undangan (per pcs):\n • ${anggaranUndangan}\n\n`;
+                pesan += `🎁 Status Rencana Souvenir:\n • ${punyaSouvenir}\n`;
+                if (punyaSouvenir === 'Sudah Ada / Sedang Dipertimbangkan') {
+                    pesan += `  🏷️ Detail Souvenir: ${detailSouvenir || "Tidak diisi"}\n`;
+                    pesan += `  💸 Anggaran Souvenir (per pcs): ${anggaranSouvenir || "Belum dipilih"}\n`;
+                }
+                pesan += `\nMohon untuk segera ditindaklanjuti. Terima kasih!`;
+                const encodedPesan = encodeURIComponent(pesan);
+                const whatsappURL = `https://wa.me/${nomorTujuanBisnis}?text=${encodedPesan}`;
+                window.open(whatsappURL, '_blank');
+            });
+        } // Akhir dari if (form)
     });
     </script>
 
