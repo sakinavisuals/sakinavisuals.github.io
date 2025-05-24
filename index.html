@@ -61,13 +61,13 @@
             z-index: 1010; /* Pastikan di atas elemen lain */
         }
         .header-logo a {
-            display: inline-block; /* Agar bisa diberi dimensi jika perlu */
+            display: inline-block; 
             text-decoration: none;
         }
         .header-logo img { /* Styling untuk gambar logo */
             height: var(--header-logo-height);
             width: auto; /* Lebar menyesuaikan agar proporsional */
-            display: block; /* Hilangkan space bawah jika ada */
+            display: block; 
         }
         
         .nav-toggle {
@@ -147,7 +147,6 @@
             margin-bottom: 2rem; 
         }
 
-        /* ... (CSS Typography, Form Group, Input Fields, Radio, Form Row, Helper Text, Submit Button TETAP SAMA) ... */
         .whatsapp-form-container h3 { text-align: center; color: var(--form-text-color); font-size: 2rem; margin-bottom: 0.75rem; font-weight: 600; }
         .whatsapp-form-container p.form-description { text-align: center; font-size: 1rem; color: var(--form-label-color); margin-bottom: 2.5rem; line-height: 1.7; max-width: 700px; margin-left: auto; margin-right: auto; }
         .form-group { margin-bottom: 1.5rem; }
@@ -201,8 +200,7 @@
         }
         @media (max-width: 768px) { /* Mobile */
             .page-header { padding: 1rem; }
-            /* .header-logo a { font-size: 1.25rem; } -> Dihapus karena sekarang pakai gambar */
-            .header-logo img { height: calc(var(--header-logo-height) - 5px); } /* Sedikit lebih kecil di mobile jika perlu */
+            .header-logo img { height: calc(var(--header-logo-height) - 5px); } 
             .header-nav { display: none; } 
             .nav-toggle { display: block; } 
             .form-page-wrapper { padding: 1rem; } 
@@ -226,8 +224,7 @@
 <body>
     <header class="page-header">
         <div class="header-logo">
-            <a href="https://linktr.ee/visuals">
-                <img src="images/logosakina.png" alt="Sakina Visuals Logo">
+            <a href="https://linktr.ee/sakinavisuals" target="_blank"> <img src="images/logosakina.png" alt="Sakina Visuals Logo">
             </a>
         </div>
         <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
@@ -349,9 +346,9 @@
                 navToggle.setAttribute('aria-expanded', isExpanded);
             });
         }
-        // Pastikan ID form adalah 'pricelistForm' di HTML Anda
+        
         const form = document.getElementById('pricelistForm'); 
-        if (form) { // Tambahkan pengecekan jika form ada
+        if (form) { 
             const punyaSouvenirRadios = document.querySelectorAll('input[name="punyaSouvenir"]');
             const detailSouvenirGroup = document.getElementById('detailSouvenirGroup');
             const detailSouvenirTextarea = document.getElementById('detailSouvenir');
@@ -360,16 +357,29 @@
             
             function toggleSouvenirDetails() {
                 const selectedPunyaSouvenir = document.querySelector('input[name="punyaSouvenir"]:checked');
-                if (detailSouvenirGroup && anggaranSouvenirGroup && detailSouvenirTextarea) { // Pastikan elemen ada
+                if (detailSouvenirGroup && anggaranSouvenirGroup && detailSouvenirTextarea) { 
                     if (selectedPunyaSouvenir && selectedPunyaSouvenir.value === 'Sudah Ada / Sedang Dipertimbangkan') {
                         detailSouvenirGroup.style.display = 'block';
                         detailSouvenirTextarea.required = true;
                         anggaranSouvenirGroup.style.display = 'block';
                         if (anggaranSouvenirRadios.length > 0) { 
-                            // Cek apakah ada yang sudah terpilih, jika tidak, buat required
                             let isAnggaranSouvenirChecked = false;
                             anggaranSouvenirRadios.forEach(radio => { if(radio.checked) isAnggaranSouvenirChecked = true; });
-                            if(!isAnggaranSouvenirChecked) anggaranSouvenirRadios[0].required = true; else anggaranSouvenirRadios.forEach(radio => radio.required = false);
+                            
+                            // Set required only if no radio in the group is checked
+                            let oneRequired = false;
+                            if (!isAnggaranSouvenirChecked) {
+                                anggaranSouvenirRadios[0].required = true; // Make at least one required
+                                oneRequired = true;
+                            }
+                            // Ensure others are not required if one is set to be
+                            if (oneRequired) {
+                                for(let i = 1; i < anggaranSouvenirRadios.length; i++) {
+                                    anggaranSouvenirRadios[i].required = false;
+                                }
+                            } else { // If one is already checked, none should be strictly required by JS for this group
+                                 anggaranSouvenirRadios.forEach(radio => radio.required = false);
+                            }
                         }
                     } else {
                         detailSouvenirGroup.style.display = 'none';
@@ -399,7 +409,17 @@
                 const nama = document.getElementById('nama').value;
                 let nomorWhatsappUser = document.getElementById('nomorWhatsapp').value;
                 const estimasiUndangan = document.getElementById('estimasiUndangan').value;
-                const tanggalPernikahan = document.getElementById('tanggalPernikahan').value;
+                const tanggalPernikahanInput = document.getElementById('tanggalPernikahan');
+                let tanggalPernikahanFormatted = "Belum ditentukan";
+                if (tanggalPernikahanInput.value) {
+                    try {
+                        tanggalPernikahanFormatted = new Date(tanggalPernikahanInput.value).toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' });
+                    } catch (e) {
+                        console.error("Error formatting date:", e);
+                        tanggalPernikahanFormatted = tanggalPernikahanInput.value; // Fallback to raw value
+                    }
+                }
+
                 const preferensiUndanganElement = document.querySelector('input[name="preferensiUndangan"]:checked');
                 const preferensiUndangan = preferensiUndanganElement ? preferensiUndanganElement.value : "Belum dipilih";
                 const anggaranUndanganElement = document.querySelector('input[name="anggaranUndangan"]:checked');
@@ -418,7 +438,7 @@
                 pesan += `👤 Nama: ${nama}\n`;
                 pesan += `📱 WhatsApp Klien: +62${nomorWhatsappUser}\n`;
                 pesan += `🔢 Estimasi Undangan: ${estimasiUndangan} pcs\n`;
-                pesan += `🗓️ Rencana Tanggal Pernikahan: ${new Date(tanggalPernikahan).toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' })}\n\n`;
+                pesan += `🗓️ Rencana Tanggal Pernikahan: ${tanggalPernikahanFormatted}\n\n`;
                 pesan += `✨ Preferensi Undangan:\n • ${preferensiUndangan}\n\n`;
                 pesan += `💰 Estimasi Anggaran Undangan (per pcs):\n • ${anggaranUndangan}\n\n`;
                 pesan += `🎁 Status Rencana Souvenir:\n • ${punyaSouvenir}\n`;
@@ -431,7 +451,7 @@
                 const whatsappURL = `https://wa.me/${nomorTujuanBisnis}?text=${encodedPesan}`;
                 window.open(whatsappURL, '_blank');
             });
-        } // Akhir dari if (form)
+        } 
     });
     </script>
 
