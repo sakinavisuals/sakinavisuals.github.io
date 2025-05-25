@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sakina Visuals - Creative Design Services</title>
+    <style>
+        :root {
+            --primary-bg-color: #eedfe0; 
+            --text-color-dark: #333333; 
+            --text-color-heading: #500619; 
+            --text-color-footer: #555555; 
+            --button-bg-color: #61081E; 
+            --button-text-color: #FFFFFF;
+            --button-hover-bg-color: #420415; 
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            --border-radius-button: 25px; 
+            --border-radius-icon: 50%; 
+        }
+
+        /* Reset dasar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            min-height: 100vh; 
+            font-family: var(--font-family);
+            background-color: var(--primary-bg-color); 
+            color: var(--text-color-dark);
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Memusatkan .page-wrapper secara horizontal */
+            justify-content: center; /* Memusatkan .page-wrapper secara vertikal jika konten pendek */
+            padding: 0; 
+            text-align: center; 
+        }
+
+        .page-wrapper { 
+            width: 100%;
+            max-width: 380px; /* Lebar kolom utama sedikit lebih ramping */
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+            padding: 25px 20px; /* Padding atas/bawah sedikit lebih banyak, kiri/kanan disesuaikan */
+            flex-grow: 1; 
+        }
+        
+        .logo-container {
+            margin-bottom: 18px; /* Jarak bawah logo disesuaikan */
+        }
+        .logo-container img {
+            width: 95px; /* Ukuran logo disesuaikan */
+            height: 95px; 
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .brand-name {
+            font-size: 1.9rem; /* Ukuran font brand name */
+            font-weight: 700;
+            color: var(--text-color-heading);
+            margin-bottom: 10px; /* Jarak bawah brand name */
+        }
+
+        .tagline {
+            font-size: 0.82rem; /* Ukuran font tagline */
+            color: #4A4A4A;
+            margin-bottom: 5px; 
+            line-height: 1.45;
+        }
+        .tagline-secondary {
+            font-size: 0.78rem; /* Ukuran font tagline sekunder */
+            color: #555;
+            margin-bottom: 5px; 
+            font-style: italic;
+        }
+        .location {
+            font-size: 0.72rem; /* Ukuran font lokasi */
+            color: #666;
+            margin-bottom: 22px; /* Jarak bawah lokasi */
+        }
+
+        .buttons-group {
+            width: 100%;
+            max-width: 300px; /* Lebar grup tombol disesuaikan */
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 22px; /* Jarak bawah grup tombol */
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            background-color: var(--button-bg-color);
+            color: var(--button-text-color);
+            text-decoration: none;
+            padding: 13px 15px; /* Padding tombol disesuaikan */
+            border-radius: var(--border-radius-button);
+            font-size: 0.88rem; /* Ukuran font tombol */
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 12px; /* Jarak antar tombol */
+            transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1); 
+        }
+
+        .btn:hover {
+            background-color: var(--button-hover-bg-color);
+            transform: translateY(-2px); 
+            box-shadow: 0 5px 10px rgba(0,0,0,0.12);
+        }
+        .btn:active {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .btn:last-child {
+            margin-bottom: 0;
+        }
+
+        .social-media {
+            margin-top: 0; 
+            margin-bottom: 18px; /* Jarak bawah ikon sosial media */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px; /* Jarak antar ikon sosial media */
+        }
+
+        .social-media a {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-color-dark);
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+        .social-media a:hover {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+
+        .social-media img {
+            width: 28px; /* Ukuran ikon sosial media */
+            height: 28px; 
+        }
+
+        .footer {
+            margin-top: auto; 
+            padding-bottom: 18px; /* Padding bawah footer */
+            font-size: 0.68rem; /* Ukuran font footer */
+            color: var(--text-color-footer); 
+            width: 100%; 
+            text-align: center; 
+        }
+        .footer p {
+            margin-bottom: 3px; 
+            line-height: 1.4;
+        }
+
+        /* Responsive adjustments untuk layar sangat kecil jika diperlukan */
+        @media (max-width: 370px) { /* Disesuaikan untuk layar yang lebih sempit dari 380px */
+            .page-wrapper {
+                padding: 20px 15px; /* Padding disesuaikan */
+                max-width: 100%; /* Izinkan full width di layar sangat kecil */
+            }
+            .logo-container img {
+                width: 85px; 
+                height: 85px;
+            }
+            .brand-name {
+                font-size: 1.7rem; 
+            }
+             .tagline {
+                font-size: 0.78rem;
+            }
+            .tagline-secondary {
+                font-size: 0.72rem;
+            }
+            .location {
+                font-size: 0.68rem;
+            }
+            .buttons-group {
+                 max-width: 95%; 
+            }
+            .btn {
+                padding: 11px 13px;
+                font-size: 0.82rem;
+            }
+            .social-media img {
+                width: 26px; 
+                height: 26px;
+            }
+            .social-media {
+                gap: 18px;
+            }
+            .footer {
+                font-size: 0.62rem;
+            }
+        }
+        
+        /* Media query untuk tablet */
+        @media (min-width: 481px) and (max-width: 768px) {
+            .page-wrapper { 
+                max-width: 420px; /* Sedikit lebih lebar di tablet jika diinginkan */
+            }
+             .brand-name {
+                font-size: 2rem; 
+            }
+            .btn {
+                font-size: 0.9rem; 
+            }
+             .buttons-group {
+                max-width: 340px; 
+            }
+            .social-media img {
+                width: 30px;
+                height: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper"> 
+        <div class="logo-container">
+            <img src="https://raw.githubusercontent.com/sakinavisuals/sakinavisuals.github.io/7a886691583a16244a18a6f71f5d01e6c0597a3d/images/logosakina3.png" alt="Logo Sakina Visuals">
+        </div>
+
+        <h1 class="brand-name">Sakina Visuals</h1>
+
+        <p class="tagline">Illustration • Print • Motion • Website • LED Backdrop</p>
+        <p class="tagline-secondary">Crafted with peace, grace & intention</p>
+        <p class="location">Yogyakarta, ID — by appointment</p>
+
+        <div class="buttons-group">
+            <a href="https://wa.me/6281229236446?text=Hai%20kak%20Admin%20Sakina%2C%20saya%20mau%20konsultasi%20undangan%20cetak" class="btn" target="_blank" rel="noopener noreferrer">
+                Pertanyaan & Pemesanan
+            </a>
+            <a href="https://sakinavisuals.github.io/katalog.html" class="btn" target="_blank" rel="noopener noreferrer">
+                Katalog Produk
+            </a>
+        </div>
+
+        <div class="social-media">
+            <a href="https://wa.me/628123456789" target="_blank" rel="noopener noreferrer" class="wa-group">
+                <img src="https://raw.githubusercontent.com/sakinavisuals/sakinavisuals.github.io/7a886691583a16244a18a6f71f5d01e6c0597a3d/images/whatsred.png" alt="WhatsApp Sakina Visuals">
+            </a>
+            <a href="https://www.instagram.com/sakina.visuals/" target="_blank" rel="noopener noreferrer">
+                <img src="https://raw.githubusercontent.com/sakinavisuals/sakinavisuals.github.io/7a886691583a16244a18a6f71f5d01e6c0597a3d/images/instared.png" alt="Instagram Sakina Visuals">
+            </a>
+            <a href="https://www.tiktok.com/@sakina.visuals" target="_blank" rel="noopener noreferrer">
+                <img src="https://raw.githubusercontent.com/sakinavisuals/sakinavisuals.github.io/7a886691583a16244a18a6f71f5d01e6c0597a3d/images/tiktokred.png" alt="TikTok Sakina Visuals">
+            </a>
+        </div>
+        
+        <footer class="footer">
+            <p>Copyright 2024 &copy; All rights Reserved</p>
+            <p>Created with love by Sakina Visuals.</p>
+        </footer>
+    </div> 
+</body>
+</html>
