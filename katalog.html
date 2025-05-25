@@ -2,8 +2,24 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Katalog Undangan - Sakina Visuals</title>
+
+    <link rel="icon" href="https://raw.githubusercontent.com/sakinavisuals/sakinavisuals.github.io/7a886691583a16244a18a6f71f5d01e6c0597a3d/images/logosakina3.png" type="image/png">
+
+    <meta property="og:title" content="Katalog Undangan - Sakina Visuals">
+    <meta property="og:description" content="Crafted with peace, grace & intention">
+    <meta property="og:image" content="https://raw.githubusercontent.com/sakinavisuals/sakinavisuals.github.io/c5cf09fd670e687b6a53003b57410e3a39f620ff/images/logosakina.png">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Katalog Undangan - Sakina Visuals">
+    <meta name="twitter:description" content="Crafted with peace, grace & intention">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/sakinavisuals/sakinavisuals.github.io/c5cf09fd670e687b6a53003b57410e3a39f620ff/images/logosakina.png">
+
+    <meta name="theme-color" content="#500619"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="500619"/>
+    <meta name="msapplication-navbutton-color" content="#500619"/>
+
     <style>
         /* --- Global Variables --- */
         :root {
@@ -41,13 +57,35 @@
         }
         html { height: 100%; box-sizing: border-box; background-color: var(--page-outer-bg); }
         *, *:before, *:after { box-sizing: inherit; }
-        body { min-height: 100vh; margin: 0; padding: 0; display: flex; flex-direction: column; background-color: var(--page-outer-bg); font-family: var(--form-font-family); color: var(--form-text-color); }
+        body { 
+            min-height: 100vh; 
+            margin: 0; 
+            padding: 0; 
+            display: flex; 
+            flex-direction: column; 
+            background-color: var(--page-outer-bg); 
+            font-family: var(--form-font-family); 
+            color: var(--form-text-color); 
+            touch-action: pan-x pan-y;
+        }
         
-        /* Header Styling */
-        .page-header { background-color: var(--page-main-bg); color: var(--header-text-color); padding: 0.75rem 2rem; display: flex; justify-content: space-between; align-items: center; width: 100%; position: sticky; top: 0; left: 0; z-index: 1010; }
+        /* Header Styling - Disesuaikan agar sama dengan Pricelist Form */
+        .page-header { 
+            background-color: var(--page-main-bg); 
+            color: var(--header-text-color); 
+            padding: 1rem 2rem; /* Disesuaikan */
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            width: 100%; 
+            position: sticky; 
+            top: 0; 
+            left: 0; 
+            z-index: 1010; 
+        }
         .header-logo a { display: inline-block; vertical-align: middle; }
         .header-logo img {
-            height: 40px; 
+            height: 40px; /* Tetap 40px untuk desktop, sesuai Pricelist */
             width: auto;
             display: block;
         }
@@ -65,7 +103,7 @@
         .mobile-nav-menu li { margin: 0.5rem 0; width: 100%; text-align: center; }
         .mobile-nav-menu a { color: var(--header-text-color); text-decoration: none; font-size: 1rem; font-weight: 500; padding: 0.75rem 1rem; display: block; width: 100%; } .mobile-nav-menu a:hover { background-color: rgba(255,255,255,0.1); }
         
-        /* Catalog Page & Content (No changes here) */
+        /* Catalog Page & Content */
         .catalog-page-wrapper { width: 100%; flex-grow: 1; padding: 2rem 1rem; display: flex; flex-direction: column; align-items: center; }
         .catalog-content { max-width: 1100px; width: 100%; background-color: var(--card-background-color); padding: 2rem; border-radius: var(--form-border-radius); box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1); }
         .catalog-title { text-align: center; font-size: 2.2rem; color: var(--form-text-color); margin-bottom: 0.5rem; font-weight: 600; }
@@ -90,7 +128,7 @@
         .btn-order { background-color: var(--item-btn-order-bg); color: var(--item-btn-order-text); border: 1px solid var(--item-btn-order-bg); }
         .btn-order:hover { background-color: var(--item-btn-order-hover-bg); color: var(--item-btn-order-hover-text); border-color: var(--item-btn-order-hover-bg); transform: translateY(-1px); }
         
-        /* --- Modal/Popup Styling (No changes here) --- */
+        /* --- Modal/Popup Styling --- */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); display: flex; justify-content: center; align-items: center; z-index: 2000; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0s linear 0.3s; padding: 1rem; }
         .modal-overlay.visible { opacity: 1; visibility: visible; transition-delay: 0s; }
         .modal-content { background-color: #fff; padding: 1.5rem; border-radius: var(--form-border-radius); width: 100%; max-width: 750px; max-height: 90vh; overflow-y: auto; position: relative; transform: translateY(-20px) scale(0.95); transition: transform 0.3s ease, opacity 0.3s ease; opacity: 0; }
@@ -140,17 +178,15 @@
         .footer-container { width: 100%; background-color: var(--page-main-bg); color: var(--footer-text-color); padding: 2rem 1rem; text-align: center; box-sizing: border-box; }
         .social-icons { margin-bottom: 1rem; } 
         .social-icons a { 
-            /* color: var(--footer-icon-color); /* Tidak relevan jika menggunakan img */
             text-decoration: none; 
             margin: 0 10px; 
             display: inline-block; 
             transition: transform 0.2s ease, opacity 0.2s ease; 
         }
-        .social-icons a img { /* Styling untuk ikon gambar */
+        .social-icons a img {
             width: 28px; 
             height: 28px; 
-            /* fill: currentColor; /* Tidak relevan untuk img */
-            vertical-align: middle; /* Menjaga alignment */
+            vertical-align: middle;
         } 
         .social-icons a:hover { 
             transform: translateY(-2px); 
@@ -160,8 +196,8 @@
         
         /* Responsive Adjustments */
         @media (max-width: 768px) { 
-            .page-header { padding: 0.5rem 1rem; } 
-            .header-logo img { height: 30px; } 
+            .page-header { padding: 1rem; } /* Disesuaikan agar sama dengan Pricelist */
+            .header-logo img { height: 35px; } /* Disesuaikan agar sama dengan Pricelist (40px - 5px) */
             .header-nav { display: none; } .nav-toggle { display: block; } 
             .catalog-page-wrapper { padding: 1rem; } 
             .catalog-content { padding: 1.5rem 1rem; }
@@ -197,7 +233,7 @@
             .popup-actions .btn:last-child { margin-bottom: 0; }
 
             .footer-container { padding: 1.5rem 1rem; } 
-            .social-icons a img { /* Ukuran ikon sosial di mobile */
+            .social-icons a img {
                 width: 24px; 
                 height: 24px; 
             } 
@@ -214,18 +250,20 @@
 <body>
     <header class="page-header">
         <div class="header-logo">
-            <a href="https://sakinavisuals.github.io" target="_blank"> <img src="https://raw.githubusercontent.com/sakinavisuals/sakinavisuals.github.io/4b4445186c2ea6f8a8afc0e12abbbb8f8365a0a1/images/logosakina2.png" alt="Sakina Visuals Logo"> </a>
+            <a href="https://sakinavisuals.github.io"> 
+                <img src="https://raw.githubusercontent.com/sakinavisuals/sakinavisuals.github.io/4b4445186c2ea6f8a8afc0e12abbbb8f8365a0a1/images/logosakina2.png" alt="Sakina Visuals Logo"> 
+            </a>
         </div>
         <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span class="hamburger-icon"></span></button>
         <nav class="header-nav">
             <ul>
-                <li><a href="https://sakinavisuals.github.io" target="_blank">Home</a></li> <li><a href="https://sakinavisuals.github.io/katalog.html">Katalog</a></li>
-                <li><a href="https://sakinavisuals.github.io/pricelist.html" target="_blank">Pricelist</a></li>
+                <li><a href="https://sakinavisuals.github.io">Home</a></li> 
+                <li><a href="https://sakinavisuals.github.io/katalog.html">Katalog</a></li> <li><a href="https://sakinavisuals.github.io/pricelist.html">Pricelist</a></li>
             </ul>
         </nav>
         <ul class="mobile-nav-menu">
-            <li><a href="https://sakinavisuals.github.io" target="_blank">Home</a></li> <li><a href="https://sakinavisuals.github.io/katalog.html">Katalog</a></li>
-            <li><a href="https://sakinavisuals.github.io/pricelist.html" target="_blank">Pricelist</a></li>
+            <li><a href="https://sakinavisuals.github.io">Home</a></li> 
+            <li><a href="https://sakinavisuals.github.io/katalog.html">Katalog</a></li> <li><a href="https://sakinavisuals.github.io/pricelist.html">Pricelist</a></li>
         </ul>
     </header>
 
@@ -263,7 +301,7 @@
             </a>
         </div>
         <p class="copyright">
-            Copyright 2024 &copy; All rights Reserved. Created with love by Sakina Visuals.
+            Copyright 2025 &copy; All rights Reserved. Created with love by Sakina Visuals.
         </p>
     </footer>
 
@@ -322,22 +360,11 @@
     </div>
 
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const navToggle = document.querySelector('.nav-toggle');
-        const pageHeader = document.querySelector('.page-header');
-        if (navToggle && pageHeader) {
-            navToggle.addEventListener('click', () => {
-                pageHeader.classList.toggle('nav-active');
-                const isExpanded = pageHeader.classList.contains('nav-active');
-                navToggle.setAttribute('aria-expanded', isExpanded);
-            });
-        }
-
-        // CatalogData (gunakan URL gambar produk Anda yang sebenarnya)
+        // CatalogData dipindahkan ke sini agar lebih mudah diedit
         const catalogData = [
-             {
+            {
                 id: 'sv-l2-001', category: 'lipat2',
-                imageSrc: 'https://raw.githubusercontent.com/sakinavisuals/sakinavisuals.github.io/fb88133df7cdebdabd9a91a8b0fff6fedaa1022e/images/cat_lipat2/SV-LP2-001.jpg', // GANTI DENGAN URL GAMBAR ASLI
+                imageSrc: 'https://raw.githubusercontent.com/sakinavisuals/sakinavisuals.github.io/fb88133df7cdebdabd9a91a8b0fff6fedaa1022e/images/cat_lipat2/SV-LP2-001.jpg', 
                 altText: 'Undangan Softcover Lipat 2 Klasik', 
                 codeCard: 'KODE : SV-L2-001', 
                 detailsCard: ['Art Carton 260gsm', 'A4 Dilipat', 'Floral Elegan'],
@@ -355,7 +382,7 @@
             },
             {
                 id: 'sv-l2-002', category: 'lipat2',
-                imageSrc: 'https://raw.githubusercontent.com/sakinavisuals/sakinavisuals.github.io/fb88133df7cdebdabd9a91a8b0fff6fedaa1022e/images/cat_lipat2/SV-LP2-002.jpg', // GANTI DENGAN URL GAMBAR ASLI
+                imageSrc: 'https://raw.githubusercontent.com/sakinavisuals/sakinavisuals.github.io/fb88133df7cdebdabd9a91a8b0fff6fedaa1022e/images/cat_lipat2/SV-LP2-002.jpg', 
                 altText: 'Undangan Lipat 2 Modern', codeCard: 'KODE : SV-L2-002',
                 detailsCard: ['Jasmin White 200gsm', 'A4 Dilipat', 'Modern Minimalis'],
                 titlePopup: 'UNDANGAN LIPAT 2 MODERN MINIMALIS', codePopup: 'SV-L2-002',
@@ -369,7 +396,7 @@
             },
             {
                 id: 'sv-l3-001', category: 'lipat3',
-                imageSrc: 'https://via.placeholder.com/300x300.png/61081E/eee?text=Ganti+L3-001', // GANTI DENGAN URL GAMBAR ASLI
+                imageSrc: 'https://via.placeholder.com/300x300.png/61081E/eee?text=Ganti+L3-001', 
                 altText: 'Undangan Lipat 3 Rustic', codeCard: 'KODE : SV-L3-001',
                 detailsCard: ['Ivory 230gsm + Doff', 'A4 Lipat Tiga', 'Rustic Vintage'],
                 titlePopup: 'UNDANGAN LIPAT 3 RUSTIC VINTAGE', codePopup: 'SV-L3-001',
@@ -383,7 +410,7 @@
             },
             {
                 id: 'sv-amp-001', category: 'amplop',
-                imageSrc: 'https://via.placeholder.com/300x300.png/500619/eee?text=Ganti+AMP-001', // GANTI DENGAN URL GAMBAR ASLI
+                imageSrc: 'https://via.placeholder.com/300x300.png/500619/eee?text=Ganti+AMP-001', 
                 altText: 'Undangan Amplop Natural', codeCard: 'KODE : SV-AMP-001',
                 detailsCard: ['Kraft Liner 150gsm', 'Amplop C5', 'Simpel Elegan'],
                 titlePopup: 'UNDANGAN DENGAN AMPLOP NATURAL', codePopup: 'SV-AMP-001',
@@ -397,7 +424,7 @@
             },
             {
                 id: 'sv-hc-001', category: 'hardcover',
-                imageSrc: 'https://via.placeholder.com/300x300.png/61081E/ccc?text=Ganti+HC-001', // GANTI DENGAN URL GAMBAR ASLI
+                imageSrc: 'https://via.placeholder.com/300x300.png/61081E/ccc?text=Ganti+HC-001', 
                 altText: 'Undangan Hardcover Mewah', codeCard: 'KODE : SV-HC-001',
                 detailsCard: ['Board Lapis Jasmin', '15x20cm', 'Poly Emas Mewah'],
                 titlePopup: 'UNDANGAN HARDCOVER EKSKLUSIF', codePopup: 'SV-HC-001',
@@ -413,163 +440,173 @@
             }
         ];
 
-
-        const catalogGrid = document.querySelector('.catalog-grid');
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const activeCategoryTitle = document.getElementById('activeCategoryTitle');
-        const previewModal = document.getElementById('previewModal');
-        const modalCloseButton = previewModal.querySelector('.modal-close');
-        const modalImage = document.getElementById('modalImage');
-        const modalItemName = document.getElementById('modalItemName');
-        const modalItemCodePopup = document.getElementById('modalItemCodePopup');
-        const modalProductSpecsList = document.getElementById('modalProductSpecs');
-        const modalBonusesList = document.getElementById('modalBonuses');
-        const modalAdditionalNotes = document.getElementById('modalAdditionalNotes');
-        const modalPricingTableBody = document.getElementById('modalPricingTableBody');
-        const modalProductionTime = document.getElementById('modalProductionTime');
-        const modalShippingOrigin = document.getElementById('modalShippingOrigin');
-        const modalShippingServices = document.getElementById('modalShippingServices');
-        const modalShippingNotes = document.getElementById('modalShippingNotes');
-        const modalKonsultasiButton = document.getElementById('modalKonsultasiWhatsapp');
-        const modalTabButtons = previewModal.querySelectorAll('.modal-tabs .tab-button');
-        const modalTabContents = previewModal.querySelectorAll('.tab-content');
-
-        function renderCatalogItems(itemsToRender) {
-            catalogGrid.innerHTML = ''; 
-            if (itemsToRender.length === 0 && itemsToRender !== catalogData) {
-                catalogGrid.innerHTML = '<p style="text-align:center; grid-column: 1 / -1; color: var(--form-label-color);">Tidak ada item untuk kategori ini.</p>';
-                return;
+        document.addEventListener('DOMContentLoaded', function() {
+            const navToggle = document.querySelector('.nav-toggle');
+            const pageHeader = document.querySelector('.page-header');
+            if (navToggle && pageHeader) {
+                navToggle.addEventListener('click', () => {
+                    pageHeader.classList.toggle('nav-active');
+                    const isExpanded = pageHeader.classList.contains('nav-active');
+                    navToggle.setAttribute('aria-expanded', isExpanded);
+                });
             }
-            itemsToRender.forEach(item => {
-                const itemElement = document.createElement('div');
-                itemElement.classList.add('catalog-item');
-                itemElement.setAttribute('data-item-id', item.id); 
+
+            const catalogGrid = document.querySelector('.catalog-grid');
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const activeCategoryTitle = document.getElementById('activeCategoryTitle');
+            const previewModal = document.getElementById('previewModal');
+            const modalCloseButton = previewModal.querySelector('.modal-close');
+            const modalImage = document.getElementById('modalImage');
+            const modalItemName = document.getElementById('modalItemName');
+            const modalItemCodePopup = document.getElementById('modalItemCodePopup');
+            const modalProductSpecsList = document.getElementById('modalProductSpecs');
+            const modalBonusesList = document.getElementById('modalBonuses');
+            const modalAdditionalNotes = document.getElementById('modalAdditionalNotes');
+            const modalPricingTableBody = document.getElementById('modalPricingTableBody');
+            const modalProductionTime = document.getElementById('modalProductionTime');
+            const modalShippingOrigin = document.getElementById('modalShippingOrigin');
+            const modalShippingServices = document.getElementById('modalShippingServices');
+            const modalShippingNotes = document.getElementById('modalShippingNotes');
+            const modalKonsultasiButton = document.getElementById('modalKonsultasiWhatsapp');
+            const modalTabButtons = previewModal.querySelectorAll('.modal-tabs .tab-button');
+            const modalTabContents = previewModal.querySelectorAll('.tab-content');
+
+            function renderCatalogItems(itemsToRender) {
+                catalogGrid.innerHTML = ''; 
+                if (itemsToRender.length === 0 && itemsToRender !== catalogData) {
+                    catalogGrid.innerHTML = '<p style="text-align:center; grid-column: 1 / -1; color: var(--form-label-color);">Tidak ada item untuk kategori ini.</p>';
+                    return;
+                }
+                itemsToRender.forEach(item => {
+                    const itemElement = document.createElement('div');
+                    itemElement.classList.add('catalog-item');
+                    itemElement.setAttribute('data-item-id', item.id); 
+                    
+                    let detailsHTML = '';
+                    if(item.detailsCard && Array.isArray(item.detailsCard)){
+                        item.detailsCard.forEach(detail => { detailsHTML += `<p>${detail}</p>`; });
+                    }
+
+                    itemElement.innerHTML = `
+                        <img src="${item.imageSrc}" alt="${item.altText}">
+                        <div class="item-details">
+                            <h4>${item.codeCard}</h4>
+                            ${detailsHTML}
+                        </div>
+                        <div class="item-actions">
+                            <a href="#" class="btn btn-preview" data-itemid="${item.id}">Preview</a>
+                            <a href="https://wa.me/628123456789?text=Halo%20Sakina%20Visuals,%20saya%20tertarik%20untuk%20order%20undangan%20kode:%20${item.codePopup || item.codeCard}" class="btn btn-order" target="_blank">Order Now</a>
+                        </div>
+                    `;
+                    catalogGrid.appendChild(itemElement);
+                });
+                addPreviewButtonListeners();
+            }
+
+            function openPreviewModal(itemId) {
+                const item = catalogData.find(i => i.id === itemId); 
+                if (!item) return;
+
+                modalImage.src = item.imageSrc;
+                modalImage.alt = item.altText;
+                modalItemName.textContent = item.titlePopup || item.altText; 
+                modalItemCodePopup.textContent = `Kode Produk: ${item.codePopup}`; 
                 
-                let detailsHTML = '';
-                if(item.detailsCard && Array.isArray(item.detailsCard)){
-                    item.detailsCard.forEach(detail => { detailsHTML += `<p>${detail}</p>`; });
+                modalProductSpecsList.innerHTML = ''; 
+                if (item.bahanPopup) modalProductSpecsList.innerHTML += `<li>${item.bahanPopup}</li>`;
+                if (item.ukuranPopup) modalProductSpecsList.innerHTML += `<li>${item.ukuranPopup}</li>`;
+                
+                modalBonusesList.innerHTML = ''; 
+                if (item.bonusPopup && Array.isArray(item.bonusPopup) && item.bonusPopup.length > 0) {
+                    item.bonusPopup.forEach(bonusText => { modalBonusesList.innerHTML += `<li>${bonusText}</li>`; });
+                } else {
+                    modalBonusesList.innerHTML = '<li>-</li>';
+                }
+                
+                modalAdditionalNotes.textContent = item.catatanTambahanPopup || '';
+                modalPricingTableBody.innerHTML = ''; 
+                if (item.hargaTiersPopup && Array.isArray(item.hargaTiersPopup) && item.hargaTiersPopup.length > 0) {
+                    item.hargaTiersPopup.forEach(tier => {
+                        modalPricingTableBody.innerHTML += `<tr><td>${tier.jumlah}</td><td>${tier.harga}</td></tr>`;
+                    });
+                } else {
+                    modalPricingTableBody.innerHTML = '<tr><td colspan="2" style="text-align:center;">Harga via konsultasi.</td></tr>';
+                }
+                modalProductionTime.textContent = item.estimasiPengerjaanPopup || '-';
+                modalShippingOrigin.textContent = item.pengirimanDariPopup || '-';
+                modalShippingServices.textContent = item.jasaKirimPopup || '-';
+                modalShippingNotes.textContent = item.notePengirimanPopup || '';
+                
+                const konsultasiPesan = `Kak, saya mau konsultasi undangan cetak kode : ${item.codePopup}`;
+                modalKonsultasiButton.href = `https://wa.me/628123456789?text=${encodeURIComponent(konsultasiPesan)}`;
+                
+                const orderNowPopupBtn = document.getElementById('modalOrderNowWhatsapp');
+                if (orderNowPopupBtn) {
+                     orderNowPopupBtn.href = `https://wa.me/628123456789?text=${encodeURIComponent('Halo Sakina Visuals, saya mau order undangan cetak kode: ' + item.codePopup)}`;
                 }
 
-                itemElement.innerHTML = `
-                    <img src="${item.imageSrc}" alt="${item.altText}">
-                    <div class="item-details">
-                        <h4>${item.codeCard}</h4>
-                        ${detailsHTML}
-                    </div>
-                    <div class="item-actions">
-                        <a href="#" class="btn btn-preview" data-itemid="${item.id}">Preview</a>
-                        <a href="https://wa.me/628123456789?text=Halo%20Sakina%20Visuals,%20saya%20tertarik%20untuk%20order%20undangan%20kode:%20${item.codePopup || item.codeCard}" class="btn btn-order" target="_blank">Order Now</a>
-                    </div>
-                `;
-                catalogGrid.appendChild(itemElement);
-            });
-            addPreviewButtonListeners();
-        }
+                showModalTab('detailUndangan'); 
+                previewModal.style.display = 'flex'; 
+                setTimeout(() => previewModal.classList.add('visible'), 10); 
+            }
 
-        function openPreviewModal(itemId) {
-            const item = catalogData.find(i => i.id === itemId);
-            if (!item) return;
-
-            modalImage.src = item.imageSrc;
-            modalImage.alt = item.altText;
-            modalItemName.textContent = item.titlePopup || item.altText; 
-            modalItemCodePopup.textContent = `Kode Produk: ${item.codePopup}`; 
-            
-            modalProductSpecsList.innerHTML = ''; 
-            if (item.bahanPopup) modalProductSpecsList.innerHTML += `<li>${item.bahanPopup}</li>`;
-            if (item.ukuranPopup) modalProductSpecsList.innerHTML += `<li>${item.ukuranPopup}</li>`;
-            
-            modalBonusesList.innerHTML = ''; 
-            if (item.bonusPopup && Array.isArray(item.bonusPopup) && item.bonusPopup.length > 0) {
-                item.bonusPopup.forEach(bonusText => { modalBonusesList.innerHTML += `<li>${bonusText}</li>`; });
-            } else {
-                modalBonusesList.innerHTML = '<li>-</li>';
+            function closeModal() {
+                previewModal.classList.remove('visible');
+                setTimeout(() => previewModal.style.display = 'none', 300); 
             }
             
-            modalAdditionalNotes.textContent = item.catatanTambahanPopup || '';
-            modalPricingTableBody.innerHTML = ''; 
-            if (item.hargaTiersPopup && Array.isArray(item.hargaTiersPopup) && item.hargaTiersPopup.length > 0) {
-                item.hargaTiersPopup.forEach(tier => {
-                    modalPricingTableBody.innerHTML += `<tr><td>${tier.jumlah}</td><td>${tier.harga}</td></tr>`;
+            function showModalTab(tabId) {
+                modalTabContents.forEach(content => content.classList.remove('active'));
+                modalTabButtons.forEach(button => button.classList.remove('active'));
+                const targetContent = document.getElementById('tab' + tabId.charAt(0).toUpperCase() + tabId.slice(1));
+                const targetButton = previewModal.querySelector(`.tab-button[data-tab="${tabId}"]`);
+                if (targetContent) targetContent.classList.add('active');
+                if (targetButton) targetButton.classList.add('active');
+            }
+
+            function addPreviewButtonListeners() {
+                const previewButtons = catalogGrid.querySelectorAll('.btn-preview');
+                previewButtons.forEach(button => {
+                    button.replaceWith(button.cloneNode(true));
                 });
-            } else {
-                modalPricingTableBody.innerHTML = '<tr><td colspan="2" style="text-align:center;">Harga via konsultasi.</td></tr>';
+                catalogGrid.querySelectorAll('.btn-preview').forEach(button => {
+                    button.addEventListener('click', function(event) {
+                        event.preventDefault();
+                        const itemId = this.getAttribute('data-itemid');
+                        openPreviewModal(itemId);
+                    });
+                });
             }
-            modalProductionTime.textContent = item.estimasiPengerjaanPopup || '-';
-            modalShippingOrigin.textContent = item.pengirimanDariPopup || '-';
-            modalShippingServices.textContent = item.jasaKirimPopup || '-';
-            modalShippingNotes.textContent = item.notePengirimanPopup || '';
             
-            const konsultasiPesan = `Kak, saya mau konsultasi undangan cetak kode : ${item.codePopup}`;
-            modalKonsultasiButton.href = `https://wa.me/628123456789?text=${encodeURIComponent(konsultasiPesan)}`;
-            
-            const orderNowPopupBtn = document.getElementById('modalOrderNowWhatsapp');
-            if (orderNowPopupBtn) {
-                 orderNowPopupBtn.href = `https://wa.me/628123456789?text=${encodeURIComponent('Halo Sakina Visuals, saya mau order undangan cetak kode: ' + item.codePopup)}`;
-            }
-
-            showModalTab('detailUndangan'); 
-            previewModal.style.display = 'flex'; 
-            setTimeout(() => previewModal.classList.add('visible'), 10); 
-        }
-
-        function closeModal() {
-            previewModal.classList.remove('visible');
-            setTimeout(() => previewModal.style.display = 'none', 300); 
-        }
-        
-        function showModalTab(tabId) {
-            modalTabContents.forEach(content => content.classList.remove('active'));
-            modalTabButtons.forEach(button => button.classList.remove('active'));
-            const targetContent = document.getElementById('tab' + tabId.charAt(0).toUpperCase() + tabId.slice(1));
-            const targetButton = previewModal.querySelector(`.tab-button[data-tab="${tabId}"]`);
-            if (targetContent) targetContent.classList.add('active');
-            if (targetButton) targetButton.classList.add('active');
-        }
-
-        function addPreviewButtonListeners() {
-            const previewButtons = catalogGrid.querySelectorAll('.btn-preview');
-            previewButtons.forEach(button => {
-                button.replaceWith(button.cloneNode(true));
+            modalCloseButton.addEventListener('click', closeModal);
+            previewModal.addEventListener('click', function(event) { 
+                if (event.target === previewModal) { closeModal(); }
             });
-            catalogGrid.querySelectorAll('.btn-preview').forEach(button => {
-                button.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    const itemId = this.getAttribute('data-itemid');
-                    openPreviewModal(itemId);
+            
+            modalTabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    showModalTab(this.getAttribute('data-tab'));
                 });
             });
-        }
-        
-        modalCloseButton.addEventListener('click', closeModal);
-        previewModal.addEventListener('click', function(event) { 
-            if (event.target === previewModal) { closeModal(); }
-        });
-        
-        modalTabButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                showModalTab(this.getAttribute('data-tab'));
-            });
-        });
 
-        filterButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                this.classList.add('active');
-                const selectedCategory = this.getAttribute('data-category');
-                const categoryName = this.textContent;
-                activeCategoryTitle.textContent = "CETAK MODEL " + categoryName.toUpperCase();
-                const filteredItems = catalogData.filter(item => item.category === selectedCategory);
-                renderCatalogItems(filteredItems);
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    const selectedCategory = this.getAttribute('data-category');
+                    const categoryName = this.textContent;
+                    activeCategoryTitle.textContent = "CETAK MODEL " + categoryName.toUpperCase();
+                    const filteredItems = catalogData.filter(item => item.category === selectedCategory); 
+                    renderCatalogItems(filteredItems);
+                });
             });
-        });
 
-        if (filterButtons.length > 0) {
-            filterButtons[0].click(); 
-        } else {
-            renderCatalogItems(catalogData); 
-        }
-    });
+            if (filterButtons.length > 0) {
+                filterButtons[0].click(); 
+            } else {
+                renderCatalogItems(catalogData); 
+            }
+        });
     </script>
 </body>
 </html>
