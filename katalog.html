@@ -16,6 +16,8 @@
     <meta name="theme-color" content="#500619"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="500619"/>
     <meta name="msapplication-navbutton-color" content="#500619"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
     <link rel="stylesheet" href="katalog.css">
 </head>
 <body>
@@ -25,7 +27,6 @@
                 <img src="https://raw.githubusercontent.com/sakinavisuals/sakinavisuals.github.io/4b4445186c2ea6f8a8afc0e12abbbb8f8365a0a1/images/logosakina2.png" alt="Sakina Visuals Logo"> 
             </a>
         </div>
-        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span class="hamburger-icon"></span></button>
         <nav class="header-nav">
             <ul>
                 <li><a href="index.html">Home</a></li> 
@@ -33,6 +34,13 @@
                 <li><a href="pricelist.html">Pricelist</a></li>
             </ul>
         </nav>
+        <div class="cart-icon-container" id="cartIconContainer" aria-label="Keranjang Belanja" role="button" tabindex="0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+            </svg>
+            <span id="cartItemCount">0</span>
+        </div>
+        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span class="hamburger-icon"></span></button>
         <ul class="mobile-nav-menu">
             <li><a href="index.html">Home</a></li> 
             <li><a href="katalog.html">Katalog</a></li>
@@ -43,7 +51,7 @@
     <main class="catalog-page-wrapper"> 
         <div class="catalog-content">
             <h1 class="catalog-title">KATALOG UNDANGAN CETAK</h1>
-            <p class="catalog-description">Pilih model sesuai kategori dengan menekan tombol di bawah.</p>
+            <p class="catalog-description">Pilih model sesuai kategori. Klik "Tambah ke Keranjang" untuk memesan atau "Preview" untuk detail.</p>
             <div class="category-filters">
                 <button data-category="lipat2" class="filter-btn active">Lipat 2</button>
                 <button data-category="lipat3" class="filter-btn">Lipat 3</button>
@@ -60,13 +68,13 @@
 
     <footer class="footer-container">
         <div class="social-icons">
-            <a href="https://wa.me/628123456789" target="_blank" aria-label="WhatsApp Sakina Visuals">
+            <a href="https://wa.me/6285640546232" target="_blank" rel="noopener noreferrer" aria-label="Chat Sakina Visuals di WhatsApp">
                 <img src="https://raw.githubusercontent.com/sakinavisuals/sakinavisuals.github.io/4b4445186c2ea6f8a8afc0e12abbbb8f8365a0a1/images/whatswhite.png" alt="WhatsApp">
             </a>
-            <a href="https://www.instagram.com/sakina.visuals/" target="_blank" aria-label="Instagram Sakina Visuals">
+            <a href="https://www.instagram.com/sakina.visuals/" target="_blank" rel="noopener noreferrer" aria-label="Kunjungi Instagram Sakina Visuals">
                 <img src="https://raw.githubusercontent.com/sakinavisuals/sakinavisuals.github.io/4b4445186c2ea6f8a8afc0e12abbbb8f8365a0a1/images/instawhite.png" alt="Instagram">
             </a>
-            <a href="https://www.tiktok.com/@sakina.visuals" target="_blank" aria-label="TikTok Sakina Visuals">
+            <a href="https://www.tiktok.com/@sakina.visuals" target="_blank" rel="noopener noreferrer" aria-label="Kunjungi TikTok Sakina Visuals">
                 <img src="https://raw.githubusercontent.com/sakinavisuals/sakinavisuals.github.io/4b4445186c2ea6f8a8afc0e12abbbb8f8365a0a1/images/tiktokwhite.png" alt="TikTok">
             </a>
         </div>
@@ -99,7 +107,7 @@
                     <ul id="modalBonuses"></ul>
                     <h4>Catatan Tambahan:</h4>
                     <p id="modalAdditionalNotes" class="additional-notes"></p>
-                    <h4>Harga Satuan:</h4>
+                    <h4>Harga Satuan Bertingkat:</h4>
                     <div class="pricing-table-container">
                         <table class="pricing-table">
                             <thead>
@@ -124,7 +132,48 @@
             </div>
             <div class="popup-actions">
                 <a href="#" id="modalKonsultasiWhatsapp" class="btn btn-preview" target="_blank">Konsultasi via WhatsApp</a>
-                <a href="https://wa.me/628123456789" id="modalOrderNowWhatsapp" class="btn btn-order" target="_blank">Order Now via WhatsApp</a>
+                <button id="modalAddToCartButton" class="btn btn-order">Tambah ke Keranjang</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="cartModal" class="modal-overlay" style="display: none;">
+        <div class="modal-content cart-modal-content">
+            <button id="closeCartModal" class="modal-close" aria-label="Tutup Keranjang">&times;</button>
+            <h2>Keranjang Belanja Anda</h2>
+            <div id="cartItemsContainer">
+                <p class="empty-cart-message">Keranjang Anda masih kosong.</p>
+            </div>
+            <div class="cart-summary">
+                <strong>Total: <span id="cartTotalAmount">Rp 0</span></strong>
+            </div>
+            <div class="cart-actions">
+                <button id="clearCartButton" class="btn btn-secondary" style="display: none;">Kosongkan Keranjang</button>
+                <button id="proceedToCheckoutButton" class="btn btn-primary" style="display: none;">Lanjut ke Pembayaran</button>
+            </div>
+
+            <div id="checkoutFormContainer" style="display:none; margin-top: 20px; border-top: 1px solid #eee; padding-top:20px;">
+                <h3>Detail Pemesan</h3>
+                <form id="checkoutForm">
+                    <div class="form-group">
+                        <label for="customerName">Nama Lengkap Pemesan *</label>
+                        <input type="text" id="customerName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="customerWhatsApp">Nomor WhatsApp Aktif *</label>
+                        <input type="tel" id="customerWhatsApp" placeholder="Contoh: 08123456789" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="customerAddress">Alamat Lengkap Pengiriman *</label>
+                        <textarea id="customerAddress" rows="3" placeholder="Nama Jalan, Nomor Rumah, RT/RW, Kelurahan, Kecamatan, Kota/Kabupaten, Provinsi, Kode Pos" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="customerNotes">Catatan Tambahan (Opsional)</label>
+                        <textarea id="customerNotes" rows="2" placeholder="Preferensi warna, permintaan khusus, dll."></textarea>
+                    </div>
+                    <p style="font-size:0.8em; margin-bottom: 15px;">* Ongkos kirim akan dihitung dan dikonfirmasikan oleh admin via WhatsApp setelah pesanan diterima.</p>
+                    <button type="submit" id="sendOrderButton" class="btn btn-primary btn-block">Kirim Pesanan via WhatsApp</button>
+                </form>
             </div>
         </div>
     </div>

@@ -24,21 +24,18 @@ document.addEventListener('DOMContentLoaded', function() {
                     detailSouvenirGroup.style.display = 'block';
                     detailSouvenirTextarea.required = true;
                     anggaranSouvenirGroup.style.display = 'block';
-                    // Make at least one radio button in anggaranSouvenir group required if this section is visible
                     let isAnggaranSouvenirChecked = false;
                     anggaranSouvenirRadios.forEach(radio => {
                         if (radio.checked) isAnggaranSouvenirChecked = true;
                     });
-                    // If no budget is selected, mark the first as required for form validation purposes
                     if (!isAnggaranSouvenirChecked && anggaranSouvenirRadios.length > 0) {
                         anggaranSouvenirRadios[0].required = true;
                         for (let i = 1; i < anggaranSouvenirRadios.length; i++) {
-                            anggaranSouvenirRadios[i].required = false; // Only one needs to be true for the group
+                            anggaranSouvenirRadios[i].required = false;
                         }
                     } else {
-                         anggaranSouvenirRadios.forEach(radio => radio.required = isAnggaranSouvenirChecked ? false : true ); // if one is checked, none are "required" for validation initially
+                         anggaranSouvenirRadios.forEach(radio => radio.required = false );
                     }
-
                 } else {
                     detailSouvenirGroup.style.display = 'none';
                     detailSouvenirTextarea.required = false;
@@ -68,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
 
-            const nomorTujuanBisnis = '6281229236446';
+            const nomorTujuanBisnis = '6281229236446'; // PASTIKAN INI NOMOR WA BISNIS ANDA YANG BENAR
             const nama = document.getElementById('nama').value;
             let nomorWhatsappUser = document.getElementById('nomorWhatsapp').value;
             const estimasiUndangan = document.getElementById('estimasiUndangan').value;

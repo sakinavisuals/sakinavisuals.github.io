@@ -1,3 +1,4 @@
+/* --- Global Variables --- */
 :root {
     --form-font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     --page-outer-bg: #61081E;       
@@ -18,6 +19,7 @@
     --header-logo-height: 40px; 
 }
 
+/* --- Basic Reset & Full Page Setup --- */
 html {
     height: 100%;
     box-sizing: border-box;
@@ -37,6 +39,7 @@ body {
     touch-action: pan-x pan-y;
 }
 
+/* --- Header Styling --- */
 .page-header {
     background-color: var(--page-main-bg); 
     color: var(--header-text-color);
@@ -59,6 +62,7 @@ body {
     width: auto; 
     display: block; 
 }
+
 .nav-toggle {
     display: none; 
     background: none;
@@ -113,6 +117,7 @@ body {
 .mobile-nav-menu a { color: var(--header-text-color); text-decoration: none; font-size: 1rem; font-weight: 500; padding: 0.75rem 1rem; display: block; width: 100%; }
 .mobile-nav-menu a:hover { background-color: rgba(255,255,255,0.1); }
 
+/* --- Wrapper untuk Konten Form (Centering & Padding) --- */
 .form-page-wrapper {
     width: 100%; 
     flex-grow: 1; 
@@ -122,6 +127,7 @@ body {
     align-items: center;
 }
 
+/* --- Form Container Styling --- */
 .whatsapp-form-container {
     max-width: 950px; 
     width: 100%; 
@@ -166,6 +172,7 @@ body {
 .submit-button:hover { background-color: var(--form-button-hover-background-color); transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
 .submit-button:active { transform: translateY(0px); box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
 
+/* --- Footer Styling --- */
 .footer-container {
     width: 100%; 
     background-color: var(--page-main-bg); 
@@ -202,10 +209,11 @@ body {
     margin: 0;
 }
 
-@media (max-width: 992px) {
+/* --- Responsive Adjustments --- */
+@media (max-width: 992px) { /* Tablet */
     .form-group.column.size-1of3 { min-width: calc(50% - 24px); }
 }
-@media (max-width: 768px) {
+@media (max-width: 768px) { /* Mobile */
     .page-header { padding: 1rem; }
     .header-logo img { height: calc(var(--header-logo-height) - 5px); } 
     .header-nav { display: none; } 
