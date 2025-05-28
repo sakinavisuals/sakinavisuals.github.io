@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
 
-            const nomorTujuanBisnis = '6281229236446'; // PASTIKAN INI NOMOR WA BISNIS ANDA YANG BENAR
+            const nomorTujuanBisnis = '6285640546232'; // PASTIKAN INI NOMOR WA BISNIS ANDA YANG BENAR
             const nama = document.getElementById('nama').value;
             let nomorWhatsappUser = document.getElementById('nomorWhatsapp').value;
             const estimasiUndangan = document.getElementById('estimasiUndangan').value;
