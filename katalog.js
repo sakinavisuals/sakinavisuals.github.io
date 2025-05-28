@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     // --- Variabel Global & Selektor DOM ---
-    const waBusinessNumber = '6281229236446'; // PASTIKAN INI NOMOR WA BISNIS ANDA YANG BENAR
+    const waBusinessNumber = '6285640546232'; // PASTIKAN INI NOMOR WA BISNIS ANDA YANG BENAR
 
     const navToggle = document.querySelector('.nav-toggle');
     const pageHeader = document.querySelector('.page-header');
