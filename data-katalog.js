@@ -221,7 +221,7 @@ const catalogData = [
         codeCard: 'KODE : SV-SC-002', 
         detailsCard: ['Ivory 230gsm', 'A4 Dilipat (Softcover)', 'Simply Heritage'],
         titlePopup: 'UNDANGAN AMPLOP', 
-        codePopup: 'SV-AMP-002',
+        codePopup: 'SV-AMP-001',
         
         // --- DATA HARGA BARU ---
         hargaDasar: 4000, // Harga satuan produk ini (ANGKA)
