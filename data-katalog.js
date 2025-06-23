@@ -212,6 +212,32 @@ const catalogData = [
         jasaKirimPopup: 'JNE, J&T, POS Indonesia, Wahana, SiCepat, Kargo (untuk partai besar), atau sesuai permintaan.',
         notePengirimanPopup: 'Bisa juga diambil langsung ke lokasi kami (dengan perjanjian).'
     },
+        {
+        id: 'sv-amp-002',
+        category: 'amplop',
+        namaProduk: 'Undangan Amplop (SV-SC-002)', // Nama Jelas
+        imageSrc: 'https://raw.githubusercontent.com/sakinavisuals/sakinavisuals.github.io/refs/heads/main/images/cat_amplop/SV-SC-002_SLIDE%2001.jpg', 
+        altText: 'Undangan Amplop', 
+        codeCard: 'KODE : SV-SC-002', 
+        detailsCard: ['Ivory 230gsm', 'A4 Dilipat (Softcover)', 'Simply Heritage'],
+        titlePopup: 'UNDANGAN AMPLOP', 
+        codePopup: 'SV-AMP-002',
+        
+        // --- DATA HARGA BARU ---
+        hargaDasar: 4000, // Harga satuan produk ini (ANGKA)
+        // hargaTiersPopup: [ ... ], // BISA DIHAPUS ATAU DIABAIKAN OLEH LOGIKA BARU
+        kuantitasMinimumOrder: 1, 
+        // --- AKHIR DATA HARGA BARU --- 
+
+        bahanPopup: 'Kertas Ivory 230gsm',
+        ukuranPopup: 'Uk. Tertutup 20,5 X 14,5 cm | Uk. Terbuka 29 X 20,5 cm',
+        bonusPopup: ['Plastik OPP Bening (Sesuai Jumlah Undangan)', 'Label Nama Tamu', 'Packing Kardus agar paket aman di pengiriman'],
+        catatanTambahanPopup: '- Bisa request tambahan: Thank You Card, Kartu Souvenir, Denah Lokasi (Silahkan chat admin untuk info & biaya tambahan).',
+        estimasiPengerjaanPopup: '7-10 Hari Kerja (setelah Desain FIX & DP diterima)',
+        pengirimanDariPopup: 'Dari Kota Yogyakarta',
+        jasaKirimPopup: 'JNE, J&T, POS Indonesia, Wahana, SiCepat, Kargo (untuk partai besar), atau sesuai permintaan.',
+        notePengirimanPopup: 'Bisa juga diambil langsung ke lokasi kami (dengan perjanjian).'
+    },
     {
         id: 'sv-hc-001',
         category: 'hardcover', // Pastikan ID unik jika ini produk yang berbeda dari duplikat lainnya
