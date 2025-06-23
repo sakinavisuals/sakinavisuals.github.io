@@ -109,6 +109,32 @@ const catalogData = [
         notePengirimanPopup: 'Bisa juga diambil langsung ke lokasi kami (dengan perjanjian).'
     },
     {
+        id: 'sv-l2-005',
+        category: 'lipat2',
+        namaProduk: 'Undangan Softcover Lipat 2 (SV-L2-005)', // Nama Jelas
+        imageSrc: 'https://raw.githubusercontent.com/sakinavisuals/sakinavisuals.github.io/refs/heads/main/images/cat_lipat2/SV-L2-005_SLIDE%2001%20copy.jpg', 
+        altText: 'Undangan Softcover Lipat 2', 
+        codeCard: 'KODE : SV-L2-005', 
+        detailsCard: ['Ivory 230gsm', 'A4 Dilipat', 'Natural Elegance'],
+        titlePopup: 'UNDANGAN SOFTCOVER LIPAT 2', 
+        codePopup: 'SV-L2-005',
+        
+        // --- DATA HARGA BARU ---
+        hargaDasar: 4000, // Harga satuan produk ini (ANGKA)
+        // hargaTiersPopup: [ ... ], // BISA DIHAPUS ATAU DIABAIKAN OLEH LOGIKA BARU
+        kuantitasMinimumOrder: 1, 
+        // --- AKHIR DATA HARGA BARU --- 
+
+        bahanPopup: 'Kertas Ivory 230gsm',
+        ukuranPopup: 'Uk. Tertutup 20,5 X 14,5 cm | Uk. Terbuka 29 X 20,5 cm',
+        bonusPopup: ['Plastik OPP Bening (Sesuai Jumlah Undangan)', 'Label Nama Tamu', 'Packing Kardus agar paket aman di pengiriman'],
+        catatanTambahanPopup: '- Bisa request tambahan: Thank You Card, Kartu Souvenir, Denah Lokasi (Silahkan chat admin untuk info & biaya tambahan).',
+        estimasiPengerjaanPopup: '7-10 Hari Kerja (setelah Desain FIX & DP diterima)',
+        pengirimanDariPopup: 'Dari Kota Yogyakarta',
+        jasaKirimPopup: 'JNE, J&T, POS Indonesia, Wahana, SiCepat, Kargo (untuk partai besar), atau sesuai permintaan.',
+        notePengirimanPopup: 'Bisa juga diambil langsung ke lokasi kami (dengan perjanjian).'
+    },
+    {
         id: 'sv-l3-001',
         category: 'lipat3',
         namaProduk: 'Undangan Softcover Semi Amplop (SV-L3-001)', // Nama Jelas
