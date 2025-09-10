@@ -25,7 +25,6 @@
         }
         html { scroll-behavior: smooth; }
         *, *:before, *:after { box-sizing: border-box; }
-        /* REVISI: Menambahkan overflow-x: hidden untuk memperbaiki bug geser di mobile */
         body { 
             min-height: 100vh; 
             margin: 0; 
@@ -69,7 +68,6 @@
         .accordion-item { border: 1px solid #e0e0e0; border-radius: var(--form-border-radius); margin-bottom: 0.75rem; background-color: var(--form-background-color); transition: box-shadow 0.2s ease; overflow: hidden; }
         .accordion-header { width: 100%; padding: 0.9rem 1.25rem; background-color: transparent; border: none; text-align: left; font-size: 1rem; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--form-primary-color); }
         .accordion-header .icon { transition: transform 0.3s ease; font-size: 1.1rem; }
-        /* REVISI: Mengembalikan overflow: hidden untuk animasi yang lebih baik */
         .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out, padding 0.4s ease-out; padding: 0 1.25rem; }
         .accordion-item.active .accordion-content { max-height: 2000px; transition: max-height 0.8s ease-in; padding: 0.25rem 1.25rem 1.25rem 1.25rem; }
         .accordion-item.active .accordion-header { background-color: #fdf6f8; }
@@ -129,8 +127,18 @@
                 <div class="accordion-item active">
                     <button type="button" class="accordion-header"><span>1. Data Pemesan & Pilihan Undangan</span><span class="icon">▼</span></button>
                     <div class="accordion-content">
-                        <div class="form-group"><label for="pemesan_nama_lengkap">Nama Lengkap</label><input type="text" id="pemesan_nama_lengkap" required></div>
-                        <div class="form-group"><label for="pemesan_nama_panggilan">Nama Panggilan</label><input type="text" id="pemesan_nama_panggilan" required></div>
+                        <div class="form-group">
+                            <label for="pemesan_nama_lengkap_pengirim">Nama Lengkap Pengirim</label>
+                            <input type="text" id="pemesan_nama_lengkap_pengirim" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pemesan_alamat_lengkap">Alamat Lengkap Pengirim</label>
+                            <textarea id="pemesan_alamat_lengkap"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="pemesan_nomor_hp">Nomor HP Pengirim <span style="color: var(--form-error-color);">(wajib nomor)</span></label>
+                            <input type="tel" id="pemesan_nomor_hp" required pattern="[0-9]{10,13}" placeholder="Contoh: 081234567890">
+                        </div>
                         <hr style="border:0; border-top:1px solid #eee; margin: 1.25rem 0;">
                         <div class="form-group">
                             <label for="model_undangan">Model Undangan</label>
@@ -195,7 +203,7 @@
                     <button type="button" class="accordion-header"><span>4. Turut Mengundang (Opsional)</span><span class="icon">▼</span></button>
                     <div class="accordion-content">
                         <div class="form-group">
-                            <label for="turut_mengundang">Keluarga yang turut mengundang</label>
+                            <label for="turut_mengundang">Lampirkan Nama dalam Turut Mengundang</label>
                             <textarea id="turut_mengundang" placeholder="Keluarga Besar Bpk. Setiawan (Jakarta)&#10;Keluarga Besar Bpk. Pratama (Bandung)" style="min-height: 100px;"></textarea>
                         </div>
                     </div>
@@ -275,44 +283,76 @@
             const form = this;
             const $errorBox = $('#error-message-box');
             
+            // Reset validasi
             $(form).find('.invalid').removeClass('invalid');
             $errorBox.hide();
 
-            if (!form.checkValidity()) {
-                const firstInvalidField = $(form).find(':invalid').first();
-                if (firstInvalidField.length > 0) {
-                    $(form).find(':invalid').addClass('invalid');
-                    const invalidAccordion = firstInvalidField.closest('.accordion-item');
-                    if (!invalidAccordion.hasClass('active')) {
-                        invalidAccordion.addClass('active').siblings().removeClass('active');
-                    }
-                    $errorBox.text('Mohon lengkapi semua kolom wajib yang ditandai.').show();
-                    $('html, body').animate({ scrollTop: $errorBox.offset().top - 80 }, 500, function() {
-                         firstInvalidField.focus();
-                    });
+            // Manual validation untuk field wajib
+            let isValid = true;
+            const requiredFields = ['#pemesan_nama_lengkap_pengirim', '#pemesan_nomor_hp', '#model_undangan', '#desain_undangan', '#wanita_nama_lengkap', '#wanita_nama_panggilan', '#wanita_ayah', '#wanita_ibu', '#pria_nama_lengkap', '#pria_nama_panggilan', '#pria_ayah', '#pria_ibu'];
+            requiredFields.forEach(field => {
+                const $field = $(field);
+                if (!$field.val() || $field.val().trim() === '') {
+                    $field.addClass('invalid');
+                    isValid = false;
                 }
+            });
+
+            // Validasi nomor HP
+            const $nomorHP = $('#pemesan_nomor_hp');
+            if ($nomorHP.val() && !/^[0-9]{10,13}$/.test($nomorHP.val())) {
+                $nomorHP.addClass('invalid');
+                isValid = false;
+            }
+
+            // Validasi acara
+            $('.acara-block').each(function() {
+                const $namaAcara = $(this).find('.acara-nama');
+                const $tanggal = $(this).find('.acara-tanggal');
+                const $jam = $(this).find('.acara-jam');
+                const $tempat = $(this).find('.acara-tempat');
+                if (!$namaAcara.val() || !$tanggal.val() || !$jam.val() || !$tempat.val()) {
+                    $namaAcara.addClass('invalid');
+                    $tanggal.addClass('invalid');
+                    $jam.addClass('invalid');
+                    $tempat.addClass('invalid');
+                    isValid = false;
+                }
+            });
+
+            if (!isValid) {
+                $errorBox.text('Mohon lengkapi semua kolom wajib yang ditandai.').show();
+                $('html, body').animate({ scrollTop: $errorBox.offset().top - 80 }, 500, function() {
+                    $(form).find('.invalid').first().focus();
+                });
                 return;
             }
 
+            // Buat pesan WhatsApp
             let pesan = `*Form Data Undangan Cetak SakinaVisuals*\n\n`;
             pesan += `*Pemesan & Pilihan*\n`;
-            pesan += `Nama: ${$('#pemesan_nama_lengkap').val()} (Panggilan: ${$('#pemesan_nama_panggilan').val()})\n`;
-            pesan += `Model: ${$('#model_undangan').val()}\n`;
-            pesan += `Desain: ${$('#desain_undangan').val()}\n\n`;
+            pesan += `Nama: ${$('#pemesan_nama_lengkap_pengirim').val() || '-'}\n`;
+            pesan += `Alamat Pengiriman: ${$('#pemesan_alamat_lengkap').val().trim() || '-'}\n`;
+            pesan += `Nomor HP : ${$('#pemesan_nomor_hp').val() || '-'}\n`;
+            pesan += `Model: ${$('#model_undangan').val() || '-'}\n`;
+            pesan += `Desain: ${$('#desain_undangan').val() || '-'}\n\n`;
             
             pesan += `*Data Pengantin*\n\n`;
-            const dataWanitaLengkap = `*Calon Mempelai Wanita*\nNama: ${$('#wanita_nama_lengkap').val()} (${$('#wanita_nama_panggilan').val()})\nPutri Bpk. ${$('#wanita_ayah').val()} & Ibu ${$('#wanita_ibu').val()}\n` + ($('#wanita_alamat').val().trim() ? `Alamat: ${$('#wanita_alamat').val().trim()}\n` : '') + `\n`;
-            const dataPriaLengkap = `*Calon Mempelai Pria*\nNama: ${$('#pria_nama_lengkap').val()} (${$('#pria_nama_panggilan').val()})\nPutra Bpk. ${$('#pria_ayah').val()} & Ibu ${$('#pria_ibu').val()}\n` + ($('#pria_alamat').val().trim() ? `Alamat: ${$('#pria_alamat').val().trim()}\n` : '') + `\n`;
+            const dataWanitaLengkap = `*Calon Mempelai Wanita*\nNama: ${$('#wanita_nama_lengkap').val() || '-'}\nNama Panggilan: ${$('#wanita_nama_panggilan').val() || '-'}\nPutri Bpk. ${$('#wanita_ayah').val() || '-'} & Ibu ${$('#wanita_ibu').val() || '-'}\n` + ($('#wanita_alamat').val().trim() ? `Alamat: ${$('#wanita_alamat').val().trim()}\n` : '') + `\n`;
+            const dataPriaLengkap = `*Calon Mempelai Pria*\nNama: ${$('#pria_nama_lengkap').val() || '-'}\nNama Panggilan: ${$('#pria_nama_panggilan').val() || '-'}\nPutra Bpk. ${$('#pria_ayah').val() || '-'} & Ibu ${$('#pria_ibu').val() || '-'}\n` + ($('#pria_alamat').val().trim() ? `Alamat: ${$('#pria_alamat').val().trim()}\n` : '') + `\n`;
             if ($('#prio-toggle').is(':checked')) pesan += dataPriaLengkap + dataWanitaLengkap; else pesan += dataWanitaLengkap + dataPriaLengkap;
 
             let acaraText = '';
             $('.acara-block').each(function(index) {
-                const namaAcara = $(this).find('.acara-nama').val(), tanggal = $(this).find('.acara-tanggal').val(), jam = $(this).find('.acara-jam').val(), zonaWaktu = $(this).find('.acara-zona-waktu').val(), tempat = $(this).find('.acara-tempat').val().trim(), maps = $(this).find('.acara-maps').val().trim();
-                if (namaAcara || tanggal || jam) {
-                    let tanggalFormatted = tanggal ? new Date(tanggal).toLocaleDateString('id-ID', { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric' }) : '-';
-                    acaraText += `*ACARA ${index + 1} (${namaAcara})*\n`;
-                    acaraText += `Tanggal: ${tanggalFormatted}\nJam: ${jam || '-'} ${zonaWaktu}\nTempat: ${tempat || '-'}\n` + (maps ? `Link Maps: ${maps}\n` : '') + `\n`;
-                }
+                const namaAcara = $(this).find('.acara-nama').val() || '-';
+                const tanggal = $(this).find('.acara-tanggal').val() || '-';
+                const jam = $(this).find('.acara-jam').val() || '-';
+                const zonaWaktu = $(this).find('.acara-zona-waktu').val() || 'WIB';
+                const tempat = $(this).find('.acara-tempat').val().trim() || '-';
+                const maps = $(this).find('.acara-maps').val().trim() || '';
+                let tanggalFormatted = tanggal !== '-' ? new Date(tanggal).toLocaleDateString('id-ID', { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric' }) : '-';
+                acaraText += `*ACARA ${index + 1} (${namaAcara})*\n`;
+                acaraText += `Tanggal: ${tanggalFormatted}\nJam: ${jam} ${zonaWaktu}\nTempat: ${tempat}\n` + (maps ? `Link Maps: ${maps}\n` : '') + `\n`;
             });
             pesan += acaraText;
             
@@ -321,10 +361,10 @@
             
             pesan += `Terima kasih.`;
             const nomorTujuanBisnis = '6285640546232';
+            console.log('Pesan yang akan dikirim:', pesan); // Debug pesan
             window.open(`https://wa.me/${nomorTujuanBisnis}?text=${encodeURIComponent(pesan)}`, '_blank');
         });
     });
     </script>
 </body>
-
 </html>
