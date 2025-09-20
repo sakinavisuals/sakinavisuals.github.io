@@ -242,10 +242,29 @@
   let currentPage = 1;
   const perPage = 8;
 
-  function getFilteredProducts() {
-    if (activeCategory === "Semua Kategori") return Object.values(productData).flat();
-    return productData[activeCategory] || [];
+  // 🔹 Fungsi acak array
+function shuffleArray(array) {
+  let shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
   }
+  return shuffled;
+}
+
+// 🔹 Acak semua produk sekali saat pertama load
+const shuffledData = {};
+for (let category in productData) {
+  shuffledData[category] = shuffleArray(productData[category]);
+}
+
+// 🔹 getFilteredProducts pakai hasil acakan di atas
+function getFilteredProducts() {
+  if (activeCategory === "Semua Kategori") {
+    return Object.values(shuffledData).flat();
+  }
+  return shuffledData[activeCategory] || [];
+}
 
   function renderTabs(){
     const tabContainer = document.getElementById('category-tabs');
