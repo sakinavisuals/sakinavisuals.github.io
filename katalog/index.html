@@ -1,184 +1,324 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Katalog Undangan - Sakina Visuals</title>
-    <link rel="icon" href="https://raw.githubusercontent.com/sakinavisuals/sakinavisuals.github.io/7a886691583a16244a18a6f71f5d01e6c0597a3d/images/logosakina3.png" type="image/png">
-    <meta property="og:title" content="Katalog Undangan - Sakina Visuals">
-    <meta property="og:description" content="Crafted with peace, grace & intention">
-    <meta property="og:image" content="https://raw.githubusercontent.com/sakinavisuals/sakinavisuals.github.io/c5cf09fd670e687b6a53003b57410e3a39f620ff/images/logosakina.png">
-    <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Katalog Undangan - Sakina Visuals">
-    <meta name="twitter:description" content="Crafted with peace, grace & intention">
-    <meta name="twitter:image" content="https://raw.githubusercontent.com/sakinavisuals/sakinavisuals.github.io/c5cf09fd670e687b6a53003b57410e3a39f620ff/images/logosakina.png">
-    <meta name="theme-color" content="#500619"/>
-    <meta name="apple-mobile-web-app-status-bar-style" content="500619"/>
-    <meta name="msapplication-navbutton-color" content="#500619"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
-    <link rel="stylesheet" href="katalog.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Katalog Undangan - Sakina Visuals</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="https://raw.githubusercontent.com/sakinavisuals/sakinavisuals.github.io/7a886691583a16244a18a6f71f5d01e6c0597a3d/images/logosakina3.png" type="image/png">
+
+  <!-- SEO & Social Share -->
+  <meta property="og:title" content="Katalog Undangan - Sakina Visuals">
+  <meta property="og:description" content="Crafted with peace, grace & intention">
+  <meta property="og:image" content="https://raw.githubusercontent.com/sakinavisuals/sakinavisuals.github.io/c5cf09fd670e687b6a53003b57410e3a39f620ff/images/logosakina.png">
+  <meta property="og:type" content="website">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Katalog Undangan - Sakina Visuals">
+  <meta name="twitter:description" content="Crafted with peace, grace & intention">
+  <meta name="twitter:image" content="https://raw.githubusercontent.com/sakinavisuals/sakinavisuals.github.io/c5cf09fd670e687b6a53003b57410e3a39f620ff/images/logosakina.png">
+
+  <!-- Browser Colors -->
+  <meta name="theme-color" content="#500619"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="#500619"/>
+  <meta name="msapplication-navbutton-color" content="#500619"/>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #60081e;
+      --primary-hover: #4a0617;
+    }
+    body { font-family:'Poppins',sans-serif; background:#f3f4f6; }
+    .text-primary{color: var(--primary);} 
+    .bg-primary{background-color: var(--primary);}
+    .bg-primary-hover:hover{background-color: var(--primary-hover);}
+    .tab-active{border-color:var(--primary)!important; color:var(--primary)!important; font-weight:600!important;}
+
+    .pagination-btn {
+      display: flex; align-items: center; justify-content: center;
+      width: 40px; height: 40px; border: 1px solid #ddd; border-radius: 0.5rem;
+      background-color: white; font-weight: 500; color: #374151; transition: all 0.2s;
+    }
+    .pagination-btn:hover:not([disabled]) { background-color: #f3f4f6; border-color: #aaa; }
+    .pagination-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .pagination-btn.active { background-color: var(--primary); color: white; border-color: var(--primary); }
+  </style>
 </head>
-<body>
-    <header class="page-header">
-        <div class="header-logo">
-            <a href="index.html"> 
-                <img src="https://raw.githubusercontent.com/sakinavisuals/sakinavisuals.github.io/4b4445186c2ea6f8a8afc0e12abbbb8f8365a0a1/images/logosakina2.png" alt="Sakina Visuals Logo"> 
-            </a>
-        </div>
-        <nav class="header-nav">
-            <ul>
-                <li><a href="https://sakinavisuals.github.io/">Home</a></li> 
-                <li><a href="https://sakinavisuals.github.io/katalog">Katalog</a></li>
-                <li><a href="https://sakinavisuals.github.io/pricelist">Pricelist</a></li>
-            </ul>
-        </nav>
-        <div class="cart-icon-container" id="cartIconContainer" aria-label="Keranjang Belanja" role="button" tabindex="0">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
-                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-            </svg>
-            <span id="cartItemCount">0</span>
-        </div>
-        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span class="hamburger-icon"></span></button>
-        <ul class="mobile-nav-menu">
-            <li><a href="https://sakinavisuals.github.io/">Home</a></li> 
-            <li><a href="https://sakinavisuals.github.io/katalog">Katalog</a></li>
-            <li><a href="https://sakinavisuals.github.io/pricelist">Pricelist</a></li>
-        </ul>
-    </header>
+<body class="text-slate-800">
 
-    <main class="catalog-page-wrapper"> 
-        <div class="catalog-content">
-            <h1 class="catalog-title">KATALOG UNDANGAN CETAK</h1>
-            <p class="catalog-description">Pilih model sesuai kategori. Klik "Tambah ke Keranjang" untuk memesan atau "Preview" untuk detail.</p>
-            <div class="category-filters">
-                <button data-category="lipat2" class="filter-btn active">Lipat 2</button>
-                <button data-category="lipat3" class="filter-btn">Lipat 3</button>
-                <button data-category="amplop" class="filter-btn">Softcover</button>
-                <button data-category="hardcover" class="filter-btn">Hardcover</button>
-            </div>
-            <div class="current-category-title">
-                <h2 id="activeCategoryTitle">CETAK MODEL LIPAT 2</h2>
-            </div>
-            <div class="catalog-grid">
-                </div>
-        </div>
-    </main>
-
-    <footer class="footer-container">
-        <div class="social-icons">
-            <a href="https://wa.me/6285640546232" target="_blank" rel="noopener noreferrer" aria-label="Chat Sakina Visuals di WhatsApp">
-                <img src="https://raw.githubusercontent.com/sakinavisuals/sakinavisuals.github.io/4b4445186c2ea6f8a8afc0e12abbbb8f8365a0a1/images/whatswhite.png" alt="WhatsApp">
-            </a>
-            <a href="https://www.instagram.com/sakina.visuals/" target="_blank" rel="noopener noreferrer" aria-label="Kunjungi Instagram Sakina Visuals">
-                <img src="https://raw.githubusercontent.com/sakinavisuals/sakinavisuals.github.io/4b4445186c2ea6f8a8afc0e12abbbb8f8365a0a1/images/instawhite.png" alt="Instagram">
-            </a>
-            <a href="https://www.tiktok.com/@sakina.visuals" target="_blank" rel="noopener noreferrer" aria-label="Kunjungi TikTok Sakina Visuals">
-                <img src="https://raw.githubusercontent.com/sakinavisuals/sakinavisuals.github.io/4b4445186c2ea6f8a8afc0e12abbbb8f8365a0a1/images/tiktokwhite.png" alt="TikTok">
-            </a>
-        </div>
-        <p class="copyright">
-            Copyright 2025 &copy; All rights Reserved. Created with love by Sakina Visuals.
-        </p>
-    </footer>
-
-    <div id="previewModal" class="modal-overlay" style="display: none;">
-        <div class="modal-content">
-            <button class="modal-close" aria-label="Tutup pratinjau">&times;</button>
-            <div class="modal-top-content">
-                <div class="modal-image-container">
-                    <img id="modalImage" src="" alt="Pratinjau Undangan">
-                </div>
-                <div class="modal-header-details">
-                    <h3 id="modalItemName"></h3>
-                    <p id="modalItemCodePopup"></p>
-                </div>
-            </div>
-            <div class="modal-tabs-container">
-                <div class="modal-tabs">
-                    <button class="tab-button active" data-tab="detailUndangan">Detail Undangan</button>
-                    <button class="tab-button" data-tab="pengerjaanPengiriman">Pengerjaan & Pengiriman</button>
-                </div>
-                <div id="tabDetailUndangan" class="tab-content active">
-                    <h4>Spesifikasi Produk:</h4>
-                    <ul id="modalProductSpecs"></ul>
-                    <h4>Bonus Termasuk:</h4>
-                    <ul id="modalBonuses"></ul>
-                    <h4>Catatan Tambahan:</h4>
-                    <p id="modalAdditionalNotes" class="additional-notes"></p>
-                    <h4>Harga Satuan Bertingkat:</h4>
-                    <div class="pricing-table-container">
-                        <table class="pricing-table">
-                            <thead>
-                                <tr>
-                                    <th>Jumlah (pcs)</th>
-                                    <th>Harga Satuan</th>
-                                </tr>
-                            </thead>
-                            <tbody id="modalPricingTableBody"></tbody>
-                        </table>
-                    </div>
-                </div>
-                <div id="tabPengerjaanPengiriman" class="tab-content">
-                    <h4>Estimasi Pengerjaan:</h4>
-                    <p id="modalProductionTime"></p>
-                    <h4>Pengiriman:</h4>
-                    <p id="modalShippingOrigin"></p>
-                    <h4>Jasa Kirim Tersedia:</h4>
-                    <p id="modalShippingServices"></p>
-                    <p id="modalShippingNotes" class="shipping-notes"></p>
-                </div>
-            </div>
-            <div class="popup-actions">
-                <a href="#" id="modalKonsultasiWhatsapp" class="btn btn-preview" target="_blank">Konsultasi via WhatsApp</a>
-                <button id="modalAddToCartButton" class="btn btn-order">Tambah ke Keranjang</button>
-            </div>
-        </div>
+<header class="sticky top-0 z-50 shadow-xl" style="background-color: #500619;">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      <div class="flex-shrink-0"><a href="https://sakinavisuals.art"><img class="h-12" src="https://raw.githubusercontent.com/sakinavisuals/sakinavisuals.github.io/main/images/logosakina2.png" alt="Logo Sakina Visuals"></a></div>
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="https://sakinavisuals.art" class="text-white hover:text-gray-300 transition font-medium">Home</a>
+        <a href="https://sakinavisuals.art/katalog" class="text-white hover:text-gray-300 transition font-medium">Katalog</a>
+        <a href="https://sakinavisuals.art/pricelist" class="text-white hover:text-gray-300 transition font-medium">Pricelist</a>
+      </nav>
+      <div class="md:hidden">
+        <button id="hamburger-button" class="text-white p-2 rounded-md focus:outline-none">
+          <svg id="icon-open" class="block h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          <svg id="icon-close" class="hidden h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
     </div>
-
-    <div id="cartModal" class="modal-overlay" style="display: none;">
-        <div class="modal-content cart-modal-content">
-            <button id="closeCartModal" class="modal-close" aria-label="Tutup Keranjang">&times;</button>
-            <h2>Keranjang Belanja Anda</h2>
-            <div id="cartItemsContainer">
-                <p class="empty-cart-message">Keranjang Anda masih kosong.</p>
-            </div>
-            <div class="cart-summary">
-                <strong>Total: <span id="cartTotalAmount">Rp 0</span></strong>
-            </div>
-            <div class="cart-actions">
-                <button id="clearCartButton" class="btn btn-secondary" style="display: none;">Kosongkan Keranjang</button>
-                <button id="proceedToCheckoutButton" class="btn btn-primary" style="display: none;">Lanjut ke Pembayaran</button>
-            </div>
-
-            <div id="checkoutFormContainer" style="display:none; margin-top: 20px; border-top: 1px solid #eee; padding-top:20px;">
-                <h3>Detail Pemesan</h3>
-                <form id="checkoutForm">
-                    <div class="form-group">
-                        <label for="customerName">Nama Lengkap Pemesan *</label>
-                        <input type="text" id="customerName" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="customerWhatsApp">Nomor WhatsApp Aktif *</label>
-                        <input type="tel" id="customerWhatsApp" placeholder="Contoh: 08123456789" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="customerAddress">Alamat Lengkap Pengiriman *</label>
-                        <textarea id="customerAddress" rows="3" placeholder="Nama Jalan, Nomor Rumah, RT/RW, Kelurahan, Kecamatan, Kota/Kabupaten, Provinsi, Kode Pos" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="customerNotes">Catatan Tambahan (Opsional)</label>
-                        <textarea id="customerNotes" rows="2" placeholder="Preferensi warna, permintaan khusus, dll."></textarea>
-                    </div>
-                    <p style="font-size:0.8em; margin-bottom: 15px;">* Ongkos kirim akan dihitung dan dikonfirmasikan oleh admin via WhatsApp setelah pesanan diterima.</p>
-                    <button type="submit" id="sendOrderButton" class="btn btn-primary btn-block">Kirim Pesanan via WhatsApp</button>
-                </form>
-            </div>
-        </div>
+  </div>
+  <div id="mobile-menu" class="hidden md:hidden">
+    <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+      <a href="https://sakinavisuals.art" class="block text-white hover:bg-white hover:bg-opacity-20 px-3 py-2 rounded-md font-medium">Home</a>
+      <a href="https://sakinavisuals.art/katalog" class="block text-white hover:bg-white hover:bg-opacity-20 px-3 py-2 rounded-md font-medium">Katalog</a>
+      <a href="https://sakinavisuals.art/pricelist" class="block text-white hover:bg-white hover:bg-opacity-20 px-3 py-2 rounded-md font-medium">Pricelist</a>
     </div>
+  </div>
+</header>
 
-    <script src="data-katalog.js"></script>
-    <script src="katalog.js"></script>
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+  <h1 class="text-2xl sm:text-3xl font-bold text-center text-primary mb-6">Katalog Undangan Cetak</h1>
+  <div id="category-tabs" class="flex flex-wrap justify-center gap-2 sm:gap-4 border-b pb-4 mb-8"></div>
+  <div id="product-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 min-h-[400px]"></div>
+  <div class="flex justify-center items-center mt-8 gap-2" id="pagination"></div>
+</main>
+
+<footer style="background-color: #500619;" class="text-white py-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div class="flex justify-center items-center space-x-6">
+      <a href="https://api.whatsapp.com/send/?phone=6285640546232&text&type=phone_number&app_absent=0" target="_blank" class="transition hover:opacity-80"><img class="h-7 w-7" src="https://raw.githubusercontent.com/sakinavisuals/sakinavisuals.github.io/refs/heads/main/images/whatswhite.png" alt="WhatsApp"></a>
+      <a href="https://www.instagram.com/sakina.visuals/" target="_blank" class="transition hover:opacity-80"><img class="h-7 w-7" src="https://raw.githubusercontent.com/sakinavisuals/sakinavisuals.github.io/refs/heads/main/images/instawhite.png" alt="Instagram"></a>
+      <a href="https://www.tiktok.com/@sakina.visuals" target="_blank" class="transition hover:opacity-80"><img class="h-7 w-7" src="https://raw.githubusercontent.com/sakinavisuals/sakinavisuals.github.io/refs/heads/main/images/tiktokwhite.png" alt="TikTok"></a>
+    </div>
+    <p class="mt-6 text-sm text-slate-300">© 2025 Sakina Visuals. All rights reserved. Created with love by Sakina Visuals.</p>
+  </div>
+</footer>
+
+<script>
+  // Hamburger Menu Script
+  document.getElementById('hamburger-button').addEventListener('click', () => {
+    document.getElementById('mobile-menu').classList.toggle('hidden');
+    document.getElementById('icon-open').classList.toggle('hidden');
+    document.getElementById('icon-close').classList.toggle('hidden');
+  });
+
+  // --- Product Catalog Script ---
+
+  // === BAGIAN UNTUK MENGEDIT PRODUK ===
+  // Format penulisan sudah dirapikan dan ditambahkan properti "link"
+  const productData = {
+    "Lipat 2": [
+      {
+        name: "Aqeela V1 Series",
+        kode: "Lipat 2",
+        harga: 3500,
+        diskon: 6500,
+        badge: "",
+        img: "https://raw.githubusercontent.com/sakinavisuals/sakinavisuals.github.io/refs/heads/main/images/lipat-2/Aqeela%20V1%20Series.jpg",
+        link: "/katalog/produk/aqeela-v1.html"
+      },
+      {
+        name: "Aqeela V2 Series",
+        kode: "Lipat 2",
+        harga: 1750,
+        diskon: 5650,
+        badge: "Best Seller",
+        img: "https://raw.githubusercontent.com/sakinavisuals/sakinavisuals.github.io/refs/heads/main/images/lipat-2/Aqeela%20V2%20Series.jpg",
+        link: "/katalog/produk/aqeela-v2.html"
+      },
+      {
+        name: "Fresh Garden",
+        kode: "Lipat 2",
+        harga: 1750,
+        diskon: 5650,
+        badge: "",
+        img: "https://raw.githubusercontent.com/sakinavisuals/sakinavisuals.github.io/refs/heads/main/images/lipat-2/Fresh%20Garden.webp",
+        link: "/katalog/produk/aqeela-v2.html"
+      },
+      {
+        name: "Classic Burgundy Series",
+        kode: "Lipat 2",
+        harga: 1750,
+        diskon: 5650,
+        badge: "Best Seller",
+        img: "https://raw.githubusercontent.com/sakinavisuals/sakinavisuals.github.io/refs/heads/main/images/lipat-2/Classic%20Burgundy%20Series.webp",
+        link: "/katalog/produk/aqeela-v2.html"
+      },
+      {
+        name: "Natural Elegance",
+        kode: "Lipat 2",
+        harga: 1750,
+        diskon: 5650,
+        badge: "Best Seller",
+        img: "https://raw.githubusercontent.com/sakinavisuals/sakinavisuals.github.io/refs/heads/main/images/lipat-2/Classic%20Burgundy%20Series.jpg",
+        link: "/katalog/produk/aqeela-v2.html"
+      },
+      {
+        name: "Lilac Culture",
+        kode: "Lipat 2",
+        harga: 1750,
+        diskon: 5650,
+        badge: "Baru",
+        img: "https://raw.githubusercontent.com/sakinavisuals/sakinavisuals.github.io/refs/heads/main/images/lipat-2/Lilac%20Culture%20(1).jpg",
+        link: "/katalog/produk/aqeela-v2.html"
+      },
+      {
+        name: "Night Dark",
+        kode: "Lipat 2",
+        harga: 1750,
+        diskon: 5650,
+        badge: "Best Seller",
+        img: "https://raw.githubusercontent.com/sakinavisuals/sakinavisuals.github.io/refs/heads/main/images/lipat-2/Night%20Dark%20(1).jpg",
+        link: "/katalog/produk/aqeela-v2.html"
+      },
+      // ...tambahkan produk lipat 2 lainnya dengan format yang sama
+    ],
+    "Lipat 3": [
+      {
+        name: "Khayra Classic",
+        kode: "Lipat 3",
+        harga: 3200,
+        diskon: 6100,
+        badge: "Baru",
+        img: "https://raw.githubusercontent.com/sakinavisuals/sakinavisuals.github.io/refs/heads/main/images/lipat-3/Khayra%20Classic.webp",
+        link: "/katalog/produk/khayra-classic.html"
+      },
+      {
+        name: "Botanical Luxe",
+        kode: "Lipat 3",
+        harga: 3200,
+        diskon: 6100,
+        badge: "",
+        img: "https://raw.githubusercontent.com/sakinavisuals/sakinavisuals.github.io/refs/heads/main/images/lipat-3/Botanical%20Luxe.webp",
+        link: "/katalog/produk/khayra-classic.html"
+      },
+      {
+        name: "Javanese Joglo",
+        kode: "Lipat 3",
+        harga: 3200,
+        diskon: 6100,
+        badge: "Best Seller",
+        img: "https://raw.githubusercontent.com/sakinavisuals/sakinavisuals.github.io/refs/heads/main/images/lipat-3/Javanese%20Joglo.jpg",
+        link: "/katalog/produk/khayra-classic.html"
+      },
+      {
+        name: "Exotic Prambanan",
+        kode: "Lipat 3",
+        harga: 3200,
+        diskon: 6100,
+        badge: "Best Seller",
+        img: "https://raw.githubusercontent.com/sakinavisuals/sakinavisuals.github.io/refs/heads/main/images/lipat-3/Exotic%20Prambanan.jpg",
+        link: "/katalog/produk/khayra-classic.html"
+      },
+    ],
+    "Softcover/Hardcover": [
+      {
+        name: "Java's Cream",
+        kode: "Softcover - Hardcover",
+        harga: 5500,
+        diskon: 8500,
+        badge: "",
+        img: "https://raw.githubusercontent.com/sakinavisuals/sakinavisuals.github.io/refs/heads/main/images/softhard/Javas%20Cream.webp",
+        link: "/katalog/produk/java-cream.html"
+      },
+      {
+        name: "Simply Heritage",
+        kode: "Softcover - Hardcover",
+        harga: 5500,
+        diskon: 8500,
+        badge: "",
+        img: "https://raw.githubusercontent.com/sakinavisuals/sakinavisuals.github.io/refs/heads/main/images/softhard/Simply%20Heritage.jpg",
+        link: "/katalog/produk/java-cream.html"
+      },
+    ]
+  };
+  // === AKHIR BAGIAN EDIT PRODUK ===
+
+  const categories = ["Semua Kategori", ...Object.keys(productData)];
+  let activeCategory = categories[0];
+  let currentPage = 1;
+  const perPage = 8;
+
+  function getFilteredProducts() {
+    if (activeCategory === "Semua Kategori") return Object.values(productData).flat();
+    return productData[activeCategory] || [];
+  }
+
+  function renderTabs(){
+    const tabContainer = document.getElementById('category-tabs');
+    tabContainer.innerHTML = categories.map(cat=>`<button onclick="setCategory('${cat}')" class="category-tab border-b-2 border-transparent py-2 px-2 sm:px-3 text-sm sm:text-base text-gray-500 transition ${cat===activeCategory?'tab-active':''}">${cat}</button>`).join('');
+  }
+
+  function renderProducts(){
+    const grid = document.getElementById('product-grid');
+    const filteredProducts = getFilteredProducts();
+    const start = (currentPage - 1) * perPage;
+    const pageProducts = filteredProducts.slice(start, start + perPage);
+
+    if (pageProducts.length === 0) {
+      grid.innerHTML = `<p class="col-span-full text-center text-gray-500 mt-8">Tidak ada produk dalam kategori ini.</p>`;
+      renderPagination(0);
+      return;
+    }
+
+    grid.innerHTML = pageProducts.map(p=>`
+      <div class="bg-white rounded-lg shadow-lg overflow-hidden group transform transition-transform hover:-translate-y-2">
+        <div class="relative">
+          <img src="${p.img}" alt="${p.name}" class="w-full h-48 sm:h-56 object-cover">
+          ${p.badge?`<span class="absolute top-2 left-2 text-white text-xs font-semibold px-2 py-1 rounded ${p.badge==='Best Seller'?'bg-amber-500':'bg-primary'}">${p.badge}</span>`:''}
+        </div>
+        <div class="p-3 sm:p-4">
+          <h3 class="text-base sm:text-lg font-semibold text-primary truncate">${p.name}</h3>
+          <p class="text-xs sm:text-sm text-gray-500 mb-2">Und. Cetak ${p.kode}</p>
+          <div class="flex items-center justify-between mb-3">
+            <div>
+              <p class="text-lg sm:text-xl font-bold text-gray-800">Rp${p.harga.toLocaleString('id-ID')}</p>
+              ${p.diskon?`<p class="text-xs sm:text-sm text-gray-400 line-through">Rp${p.diskon.toLocaleString('id-ID')}</p>`:''}
+            </div>
+            ${p.diskon?`<span class="bg-red-100 text-primary text-xs font-semibold px-2 py-1 rounded-full">${Math.round((1-p.harga/p.diskon)*100)}%</span>`:''}
+          </div>
+          <a href="${p.link}" class="block w-full text-center bg-primary bg-primary-hover text-white text-sm font-semibold py-2 rounded-lg transition">Lihat Detail</a>
+        </div>
+      </div>`).join('');
+    
+    renderPagination(filteredProducts.length);
+  }
+
+  function renderPagination(totalItems) {
+    const paginationContainer = document.getElementById('pagination');
+    const totalPages = Math.ceil(totalItems / perPage);
+    if (totalPages <= 1) { paginationContainer.innerHTML = ''; return; }
+    
+    let paginationHTML = '';
+    if (totalPages > 5) paginationHTML += `<button onclick="changePage(${currentPage - 1})" class="pagination-btn" ${currentPage === 1 ? 'disabled' : ''}>«</button>`;
+    for (let i = 1; i <= totalPages; i++) paginationHTML += `<button onclick="changePage(${i})" class="pagination-btn ${i === currentPage ? 'active' : ''}">${i}</button>`;
+    if (totalPages > 5) paginationHTML += `<button onclick="changePage(${currentPage + 1})" class="pagination-btn" ${currentPage === totalPages ? 'disabled' : ''}>»</button>`;
+    paginationContainer.innerHTML = paginationHTML;
+  }
+
+  function changePage(pageNum){
+    const totalPages = Math.ceil(getFilteredProducts().length / perPage);
+    if (pageNum < 1 || pageNum > totalPages) return;
+    currentPage = pageNum;
+    renderProducts();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function setCategory(cat){
+    activeCategory = cat;
+    currentPage = 1;
+    renderTabs(); 
+    renderProducts();
+  }
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    renderTabs();
+    renderProducts();
+  });
+</script>
+
 </body>
 </html>
