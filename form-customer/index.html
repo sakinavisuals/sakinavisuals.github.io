@@ -146,8 +146,8 @@
                                 <option value="" selected disabled>-- Pilih Model --</option>
                                 <option value="Lipat 2">Lipat 2</option>
                                 <option value="Lipat 3">Lipat 3</option>
-                                <option value="Softcover">Softcover</option>
-                                <option value="Hardcover">Hardcover</option>
+                                <option value="Softcover / Amplop">Softcover / Amplop</option>
+                                <option value="Hardcover + Amplop">Hardcover + Amplop</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -225,16 +225,42 @@
             item.toggleClass('active').siblings().removeClass('active');
         });
 
+        // DEFINISI DAFTAR DESAIN (UPDATED)
+        const desainLipat = [
+            'CUSTOM DESIGN',
+            'Aqeela V1 Series',
+            'Fresh Garden',
+            'Natural Elegance',
+            'Blue Serenity',
+            'Night Dark',
+            'Exotic Prambanan',
+            'Lilac Culture',
+            'Javanese Joglo',
+            'Khayra Classic',
+            'Aqeela V2 Series',
+            'Classic Burgundy Series',
+            'Botanical Luxe'
+        ];
+
+        const desainAmplop = [
+            'CUSTOM DESIGN',
+            "Java's Cream",
+            'Wine Blossom',
+            'Simply Heritage'
+        ];
+
         const desainOptions = {
-            'Lipat 2': ['CUSTOM DESIGN', 'SV-L2-001', 'SV-L2-002', 'SV-L2-003', 'SV-L2-004', 'SV-L2-005'],
-            'Lipat 3': ['CUSTOM DESIGN', 'SV-L3-001', 'SV-L3-002', 'SV-L3-003', 'SV-L3-004', 'SV-L3-005'],
-            'Softcover': ['CUSTOM DESIGN', 'SV-SC-001', 'SV-SC-002'],
-            'Hardcover': ['CUSTOM DESIGN', 'SV-HC-001', 'SV-HC-002']
+            'Lipat 2': desainLipat,
+            'Lipat 3': desainLipat,
+            'Softcover / Amplop': desainAmplop,
+            'Hardcover + Amplop': desainAmplop
         };
+
         $('#model_undangan').on('change', function() {
             const selectedModel = $(this).val();
             const $desainSelect = $('#desain_undangan');
             $desainSelect.empty().append('<option value="" selected disabled>-- Pilih Desain --</option>');
+            
             if (selectedModel && desainOptions[selectedModel]) {
                 desainOptions[selectedModel].forEach(desain => { $desainSelect.append(`<option value="${desain}">${desain}</option>`); });
                 $desainSelect.prop('disabled', false);
@@ -368,4 +394,3 @@
     </script>
 </body>
 </html>
-
